@@ -1,0 +1,93 @@
+{% extends "news/base.html" %}
+{% load news_tags %}
+{% block content %}
+{#    {% if tag %}#}
+{#        <h2>Posts tagged with "{{ tag.name }}"</h2>#}
+{#    {% endif %}#}
+    <div class="headers-container"><h2>Новини</h2></div>
+    <div>
+        <div class="news-container">
+            <div class="container">
+                {% for post in posts %}
+                    <div class="news-card-container">
+                        <div class="news-card">
+                            <p class="title">{{ post.title }}</p>
+                            <span class="news-date">{{ post.publish }}</span>
+                            <div class="describe-block">
+                                {{ post.body|markdown }}
+                                <p>{{ post.author }}</p>
+                            </div>
+                            <button class="button_news" id="{{ post.id }}">Розгорнути</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{#    {% include "pagination.html" with page=posts %}#}
+    <script>
+    </script>
+{% endblock %}
+
+
+
+
+
+
+{#                    <h2>#}
+{#                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>#}
+{#                    </h2>#}
+{#    <p class="tags">#}
+{#        Tags:#}
+{#        {% for tag in post.tags.all %}#}
+{#            <a href="{% url 'news:post_list_by_tag' tag.slug %}">#}
+{#                {{ tag.name }}#}
+{#            </a>#}
+{#            {% if not forloop.last %}, {% endif %}#}
+{#        {% endfor %}#}
+{#    </p>#}
+{#                    <p class="date">Published {{ post.publish }} by {{ post.author }}</p>#}
+{#                    {{ post.body|markdown|truncatewords_html:30 }}#}
+
+{#<div>#}
+{#    <div className="news-container">#}
+{#        <div className="container">#}
+{#            {error ? <p>{error.message}</p> : null}#}
+{#            {!isLoading ? (#}
+{#            table.map(result => {#}
+{#            const {id, title, created_date, text, author, photos} = result;#}
+{#            const img = [];#}
+{#            for (let i = 0; i < photos.length; i++) {#}
+{#            img.push(<img src={photos[i]} alt=""/>);#}
+{#            }#}
+{#            return (#}
+{#            <div className={modal && modalIndex=== id ?#}
+{#            "news-card-container news-card-container-open" : "news-card-container"} key={id}>#}
+{#            <div className={modal && modalIndex=== id ?#}
+{#            "news-card news-card-open" : "news-card"} key={id}>#}
+{#            <p className="title">{title}</p>#}
+{#            <span className="news-date">{created_date}</span>#}
+{#            <div className="describe-block">#}
+{#                <pre>Describe: {text}</pre>#}
+{#                <p>{author}</p>#}
+{#            </div>#}
+{#            <picture key={id}>#}
+{#                {img}#}
+{#            </picture>#}
+{##}
+{#            <button className={modal && modalIndex=== id ?#}
+{#            "open" : ""} id={id} onClick={()=>this.handleClick(id)}>#}
+{#            {modal && modalIndex === id ? "Згорнути" : "Розгорнути"}#}
+{#            </button>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    );#}
+{#    })#}
+{#    ) : (#}
+{#    <h3>Loading...</h3>#}
+{#    )}#}
+{#</div>#}
+{#</div>#}
+{#</div>#}
