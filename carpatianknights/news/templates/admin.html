@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KarpatianKnights</title>
+    <style>
+    	body {
+			font-family: sans-serif;
+			font-size: 16px;
+			padding: 0;
+			margin: 0;
+
+		}
+		.kv-emeil-center {
+			margin: auto;
+			text-align: center;
+			max-width: 680px;
+			background-color: #e0e0e0;
+			color: #404040;
+		}
+		.kv-emeil-header h1 {
+			color: #004d4d;
+    		letter-spacing: 2px;
+    		font-family: monospace;
+    		clear: both;
+    		padding-top: 7px;
+		}
+		.kv-emeil-main {
+			padding-top: 7px;
+			padding-left: 100px;
+			padding-right: 100px;
+		}
+		.kv-emeil-main p {
+			text-align: left;
+			padding-top: 13px;
+		}
+		.kv-emeil-main h3 {
+			padding-top: 13px;
+		}
+		.kv-top-line {
+			border-left: 680px solid #004d4d;
+    		border-bottom: 100px solid transparent;
+
+		}
+		.kv-emeil-futer{
+			border-right: 680px solid #004d4d;
+    		border-top: 100px solid transparent;
+		}
+	</style>
+</head>
+<body>
+	<div class="kv-emeil-center">
+		<div class="kv-emeil-header">
+			<div class="kv-top-line"></div>
+			<h1>Carpathian Knights</h1>
+			<h3>Новий похід - Нові звершення!</h3>
+		</div>
+		<div class="kv-emeil-main">
+			<h2>Новий охочий в похід!</h2>
+			<p>Маршрут - {{route}}</p>
+			<p>Дата початку - {{start_day|date:"d-m-Y"}}</p>
+			<p>Дата завершення - {{stop_day|date:"d-m-Y"}}</p>
+			<p>Гід - {{leader}}</p>
+			<p>ПІБ - {{full_name}}</p>
+            <p>Вік - {{age}}</p>
+			<p>Email - {{email}}</p>
+			<p>Телефон - +380{{phone}}</p>
+            <p><a href="{{url}}/admin/news/tour/{{tour_id}}/change/">підтвердити користувача</a></p>
+		</div>
+		<div class="kv-emeil-futer"></div>
+	</div>
+</body>
+</html>

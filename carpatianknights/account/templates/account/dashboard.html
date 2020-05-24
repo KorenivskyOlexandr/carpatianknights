@@ -2,17 +2,32 @@
 
 {% block title %}Dashboard{% endblock %}
 
-{% block content %}
+{% block account_content %}
     <h1>Dashboard</h1>
-    {% with total_images_created=request.user.images_created.count %}
-        <p>Welcome to your dashboard. You have bookmarked
-            {{ total_images_created }} image{{ total_images_created|pluralize }}.</p>
-    {% endwith %}
-    <p>Drag the following button to your bookmarks toolbar to bookmark images
-        from other websites
-        <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="button">
-            Bookmark it</a>
-    <p>
-    <p>You can also <a href="{% url "edit" %}">edit your profile</a> or
+    <p>Вітаємо в особистому кабінеті тут ви можете все</p>
+
+    <div class="confirm_tours">
+        {% for tour in confirm_tour %}
+           Зареєстрований тур :  {{ tour }}
+        {% empty %}
+            <p>Ви ще не зареєстровані ні на один похід</p>
+        {% endfor %}
+    </div>
+
+    <div class="tour_registration">
+        <p>Записатися в похід</p>
+        <div class="login-form">
+            <form action="" method="post">
+                {{ tour_registration_form.as_p }}
+                {% csrf_token %}
+                <p><input type="submit" value="Записатися"></p>
+            </form>
+        </div>
+    </div>
+    
+    <div class="some">
+         <p>You can also <a href="{% url "edit" %}">edit your profile</a> or
         <a href="{% url "password_change" %}">change your password</a>.<p>
+    </div>
+   
 {% endblock %}

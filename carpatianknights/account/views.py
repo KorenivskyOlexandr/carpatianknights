@@ -1,36 +1,68 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, TourRegistration
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from carpatianknights.news.models import Tour, ActiveRoutes
 from django.contrib import messages
+from django.db import IntegrityError
 
 
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,
-                                username=cd['username'],
-                                password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+# def user_login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             user = authenticate(request,
+#                                 username=cd['email'],
+#                                 password=cd['password'])
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return HttpResponse('Authenticated successfully')
+#                 else:
+#                     return HttpResponse('Disabled account')
+#             else:
+#                 return HttpResponse('Invalid login')
+#     else:
+#         form = LoginForm()
+#     return render(request, 'registration/login.html', {'form': form})
 
 
 @login_required
 def dashboard(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+    if request.method == 'POST':
+        tour_registration_form = TourRegistration(request.POST)
+        if tour_registration_form.is_valid():
+            cd = tour_registration_form.cleaned_data
+            active_tour = ActiveRoutes.objects.get(id=cd['active_tours'].id)
+            tour = Tour(user_id=request.user, active_route_id=active_tour)
+            try:
+                tour.save()
+                messages.success(
+                    request, 'Заявку подано успішно подано, глава походу зв\'яжеться з вами')
+            except IntegrityError:
+                messages.error(request, 'Ви вже подавали заявку на цей тур')
+    confirm_tour = Tour.objects.all().filter(user_id=request.user.id)
+    print(confirm_tour)
+    context = {'section': 'dashboard',
+               'tour_registration_form': TourRegistration(),
+               'confirm_tour': confirm_tour}
+    return render(request, 'account/dashboard.html', context)
+
+
+# @login_required
+# def registration_to_tour(request):
+#     # print(request.user)
+#     if request.method == 'POST':
+#         active_tour_form = TourRegistration(request.POST)
+#         if active_tour_form.is_valid():
+#             cd = active_tour_form.cleaned_data
+#             active_tour = ActiveRoutes.objects.get(id=cd['active_tours'].id)
+#             tour = Tour(user_id=request.user, active_route_id=active_tour)
+#             print(tour)
+#             return HttpResponse('Authenticated successfully')
 
 
 def register(request):
@@ -41,15 +73,20 @@ def register(request):
             new_user = user_form.save(commit=False)
             # Задаем пользователю зашифрованный пароль.
             new_user.set_password(user_form.cleaned_data['password'])
+            new_user.username = new_user.email
             # Сохраняем пользователя в базе данных.
-            Profile.objects.create(user=new_user)
             new_user.save()
+            new_profile = Profile(user=new_user, phone_number=request.POST.get(
+                "phone_number"), age=request.POST.get("age"))
+            new_profile.save()
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})
     else:
-        user_form = UserRegistrationForm()
-    return render(request, 'account/register.html', {'user_form': user_form})
+        context = {
+            'user_form': UserRegistrationForm(),
+        }
+    return render(request, 'account/register.html', context=context)
 
 
 @login_required

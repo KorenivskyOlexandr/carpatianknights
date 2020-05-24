@@ -9,6 +9,12 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from taggit.managers import TaggableManager
 from django.core.validators import *
+from django.conf import settings
+from django.db.models import signals
+from django.dispatch import receiver
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.utils.html import strip_tags
 
 
 # server = 'https://carpatianapi.herokuapp.com'
@@ -132,3 +138,68 @@ class PhotoToPost(Photo):
 class PhotoToRoutes(Photo):
     routes_id = models.ForeignKey(
         Routes, on_delete=models.CASCADE, related_name='photos')
+
+
+class Tour(models.Model):
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
+    active_route_id = models.ForeignKey(ActiveRoutes, on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ("user_id", "active_route_id")
+
+    def __str__(self):
+        return "%s %s %s" % (self.user_id, self.active_route_id, self.status)
+
+
+@receiver(signals.post_save, sender=Tour)
+def notify_admin(instance, created, **kwargs):
+    """Сповіщення адмінів про реєстрацію користувача на похід"""
+    if created:
+        user = instance.user_id
+        route = instance.active_route_id
+        html_message = render_to_string('admin.html', {'route': route.routes_id,
+                                                       'start_day': route.start_day,
+                                                       'stop_day': route.stop_day,
+                                                       'leader': route.leader,
+                                                       'full_name': user.get_full_name(),
+                                                       'phone': user.profile.phone_number,
+                                                       'age': user.profile.age,
+                                                       'email': user.email,
+                                                       'url': server,
+                                                       'tour_id': instance.id
+                                                       })
+        plain_message = strip_tags(html_message)
+        print("here")
+        send_mail(
+            subject='Карпатські Відчайдухи',
+            message=plain_message,
+            from_email='carpatianknights@gmail.com',
+            recipient_list=['carpatianknights@ukr.net', 's5a5s5h5a5@ukr.net'],
+            html_message=html_message,
+            fail_silently=False,
+        )
+
+
+@receiver(signals.pre_save, sender=Tour)
+def notify_users(instance, **kwargs):
+    """Сповіщення юзера про те що його прийнято в похід"""
+    if instance.status:
+        user = instance.user_id
+        route = instance.active_route_id
+        html_message = render_to_string('mail.html', {'route': route.routes_id,
+                                                      'start_day': route.start_day,
+                                                      'stop_day': route.stop_day,
+                                                      'leader': route.leader,
+                                                      'url': 'https://carpatianknights.ml'
+                                                      })
+        plain_message = strip_tags(html_message)
+        send_mail(
+            subject='Карпатські Відчайдухи',
+            message=plain_message,
+            from_email='carpatianknights@gmail.com',
+            recipient_list=[user.email],
+            html_message=html_message,
+            fail_silently=False,
+        )

@@ -14,7 +14,7 @@
     {% compress css %}
         <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet" media="screen">
     {% endcompress %}
-
+        {% comment %} <link href="{% static "css/base.css" %}" rel="stylesheet"> {% endcomment %}
 </head>
 <body>
 <div class="App" id="content">
@@ -41,20 +41,20 @@
             <li class="nav-item">
                 <a href="/news"><span>Новини</span></a>
             </li>
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
                 <a href="/rules"><span>Заповіді туриста</span></a>
-            </li>
-            <li class="nav-item">
+            </li> {% endcomment %}
+            {% comment %} <li class="nav-item">
                 <a href="/OurTeam"><span>Наша команда</span></a>
-            </li>
-            <li class="nav-item">
+            </li> {% endcomment %}
+            {% comment %} <li class="nav-item">
                 <a href="/Archive"><span>Архіваріум походів</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="#"><span>Контакти</span></a>
-            </li>
+            </li> {% endcomment %}
             <li class="nav-item">
                 <a href="/active_tours"><span>Актуальні походи</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="/account"><span>Особистий кабінет</span></a>
             </li>
         </ul>
     </nav>

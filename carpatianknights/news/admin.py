@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Photo, PhotoToPost, PhotoToRoutes, Routes, ActiveRoutes
+from .models import Post, Comment, Photo, PhotoToPost, PhotoToRoutes, Routes, ActiveRoutes, Tour
 
 
 @admin.register(Post)
@@ -34,3 +34,4 @@ class PhotoToRoutesAdmin(admin.ModelAdmin):
 
 admin.site.register(Routes, PhotoToRoutesAdmin)
 admin.site.register(PhotoToRoutes)
+admin.site.register(Tour)
