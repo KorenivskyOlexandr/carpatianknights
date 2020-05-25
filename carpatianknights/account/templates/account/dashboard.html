@@ -1,33 +1,52 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}З поверненням, {{user.first_name|title}}! {% endblock %}
 
 {% block account_content %}
-    <h1>Dashboard</h1>
-    <p>Вітаємо в особистому кабінеті тут ви можете все</p>
+    
+    <div class="account_tour">
+        <div class="confirm_tours">
+            {% for tour in confirm_tour %}
+                {% if forloop.first  %}
+                    <h2>Зарєстровані Маршрути</h2>
+                {% endif %}
+                <div class="confirm_tours_card">
+                    <h3>{{ tour.active_route_id.routes_id.name }}</h3>
+                    <p>{{ tour.active_route_id.start_day|date:"d.m" }}-{{ tour.active_route_id.stop_day|date:"d.m.Y" }}</p>
+                    <p>Провідник: {{ tour.active_route_id.leader }}</p>
+                    {% if tour.status  %}
+                        <h2>Статус заявки : Підтверджено</h2>
+                    {% else %}
+                        <h2>Статус заявки : Прийнято, очікуйте на підтвердження.</h2>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>Ви ще не зареєстровані ні на один похід</p>
+            {% endfor %}
+        </div>
 
-    <div class="confirm_tours">
-        {% for tour in confirm_tour %}
-           Зареєстрований тур :  {{ tour }}
-        {% empty %}
-            <p>Ви ще не зареєстровані ні на один похід</p>
-        {% endfor %}
+        <div class="tour_registration">
+            <p>Записатися в похід</p>
+            <div class="login-form">
+                <form action="" method="post">
+                    {{ tour_registration_form.as_p }}
+                    {% csrf_token %}
+                    <p><input type="submit" value="Записатися"></p>
+                </form>
+            </div>
+        </div>
+        <div class="tour_history">
+        
+        </div>
     </div>
-
-    <div class="tour_registration">
-        <p>Записатися в похід</p>
-        <div class="login-form">
-            <form action="" method="post">
-                {{ tour_registration_form.as_p }}
-                {% csrf_token %}
-                <p><input type="submit" value="Записатися"></p>
-            </form>
+    <div class="account_profile">
+         <div class="some">
+            <p>You can also <a href="{% url "edit" %}">edit your profile</a> or
+            <a href="{% url "password_change" %}">change your password</a>.<p>
+            <a href="{% url "logout" %}">Logout</a>
         </div>
     </div>
     
-    <div class="some">
-         <p>You can also <a href="{% url "edit" %}">edit your profile</a> or
-        <a href="{% url "password_change" %}">change your password</a>.<p>
-    </div>
+   
    
 {% endblock %}

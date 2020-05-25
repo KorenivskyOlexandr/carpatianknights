@@ -1,20 +1,32 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import *
+import datetime
 
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
     phone_number = models.IntegerField(unique=True)
-    age = models.IntegerField(validators=[MinValueValidator(
-        limit_value=16, message='16+, або супровід батьків')])
+    date_of_birth = models.DateField()
+    date_of_registration = models.DateField(default=datetime.date.today())
+    user_rang = models.IntegerField(default=0)
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
+
+    def save(self, *args, **kwargs):
+        date_16 = datetime.timedelta(days=5840)
+        print(datetime.date.today(), self.date_of_birth, date_16)
+        if (datetime.date.today() - self.date_of_birth) < date_16:
+            raise ValidationError(
+                "16+, або супровід батьків")
+        super(Profile, self).save(*args, **kwargs)
+
+    def clean(self):
+        date_16 = datetime.timedelta(days=5840)
+        if (datetime.date.today() - self.date_of_birth) < date_16:
+            raise ValidationError(
+                "16+, або супровід батьків")
 
     def __str__(self):
         return self.user.get_full_name()
 
-# def save(self, *args, **kwargs):
-        # if self.start_day >= self.stop_day or self.start_day < datetime.date.today():
-        #     raise ValidationError("Дата початку має бути меншою за дату кінця, тако ж більшою або рівною сьогоднішній")
-        # super(ActiveRoutes, self).save(*args, **kwargs)

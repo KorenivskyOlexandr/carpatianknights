@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
 from carpatianknights.news.models import ActiveRoutes
+from datetime import date
 
 
 class UserEditForm(forms.ModelForm):
@@ -13,12 +14,12 @@ class UserEditForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('age', 'photo')
+        fields = ('date_of_birth', 'photo')
 
 
 class UserRegistrationForm(forms.ModelForm):
     phone_number = forms.RegexField(regex=r'\d{9}')
-    age = forms.IntegerField(min_value=16)
+    date_of_birth = forms.DateField(widget=forms.SelectDateWidget(years=range(1970, date.today().year)))
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Repeat password', widget=forms.PasswordInput)

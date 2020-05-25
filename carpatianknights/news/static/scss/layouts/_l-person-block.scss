@@ -7,19 +7,19 @@
   padding: 17vh 0;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     height: 20px;
-    border-left: 100vw solid rgba(0,0,0,0.7);
+    border-left: 100vw solid rgba(0, 0, 0, 0.7);
     border-bottom: 15vh solid transparent;
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     height: 20px;
-    border-right: 100vw solid rgba(0,0,0,0.7);
+    border-right: 100vw solid rgba(0, 0, 0, 0.7);
     border-top: 15vh solid transparent;
   }
 
@@ -65,7 +65,7 @@
     }
     .card {
       width: 25%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       border-radius: 10px;
       .header {
         display: flex;

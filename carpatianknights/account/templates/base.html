@@ -8,9 +8,8 @@
 </head>
 <body> {% endcomment %}
 {% block content %}
-    <div id="header">
-        <span class="logo">Bookmarks</span>
-        {% if request.user.is_authenticated %}
+    <div class="headers-container"><h2>{% block title %}{% endblock %}</h2>
+        {% comment %} {% if request.user.is_authenticated %}
             <ul class="menu">
                 <li {% if section == "dashboard" %} class="selected"{% endif %}>
                     <a href="{% url "dashboard" %}">My dashboard</a>
@@ -24,19 +23,19 @@
                 {% else %}
                     <a href="{% url "login" %}">Log-in</a>
                 {% endif %}
-            </span>
+            </span> {% endcomment %}
     </div>
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
                 <li class="{{ message.tags }}">
                     {{ message|safe }}
-                    <a href="#" class="close">x</a>
+                    {% comment %} <a href="#" class="close">x</a> {% endcomment %}
                 </li>
             {% endfor %}
         </ul>
     {% endif %}
-    <div id="content">
+    <div id="account_content">
         {% block account_content %}
         {% endblock %}
     </div>

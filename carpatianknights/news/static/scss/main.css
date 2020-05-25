@@ -822,7 +822,7 @@ footer p {
 .active-tours-container {
   width: 100vw;
   min-height: 100vh;
-  background: url("../../../images/tours-bg.jpg") no-repeat center fixed;
+  background: url("../images/tours-bg.jpg") no-repeat center fixed;
   background-size: cover;
   padding: 100px 0;
 }
@@ -848,8 +848,52 @@ footer p {
 }
 .tour-card button {
   position: absolute;
-  top: 310px;
+  height: 40px;
+  padding: 10px;
   z-index: 2;
+}
+.tour-card button :hover {
+  color: #857b7b;
+}
+.tour-card .button_active_tour {
+  bottom: 5px;
+  left: 30px;
+}
+.tour-card .button_active_tour .fontawesome_icon {
+  display: None;
+}
+.tour-card .button_active_tour .fontawesome_icon_active {
+  display: block;
+  font-size: larger;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+.tour-card .button_register {
+  width: 300px;
+  font-size: 22px;
+  text-align: center;
+  bottom: 5px;
+  right: 30px;
+}
+.tour-card .button_register .href_register {
+  color: white;
+  text-decoration: none;
+}
+.tour-card .button_register .href_register:hover {
+  color: #857b7b;
+}
+.tour-card .active_tour_image {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-basis: 40%;
+}
+.tour-card .active_tour_image img {
+  width: 450px;
+  height: 400px;
+  object-fit: cover;
+  padding: 10px;
 }
 
 .expanded {

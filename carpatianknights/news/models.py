@@ -16,7 +16,6 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 
-
 # server = 'https://carpatianapi.herokuapp.com'
 server = 'http://127.0.0.1:8000'
 
@@ -165,13 +164,12 @@ def notify_admin(instance, created, **kwargs):
                                                        'leader': route.leader,
                                                        'full_name': user.get_full_name(),
                                                        'phone': user.profile.phone_number,
-                                                       'age': user.profile.age,
+                                                       'age': user.profile.date_of_birth,
                                                        'email': user.email,
                                                        'url': server,
                                                        'tour_id': instance.id
                                                        })
         plain_message = strip_tags(html_message)
-        print("here")
         send_mail(
             subject='Карпатські Відчайдухи',
             message=plain_message,
@@ -192,7 +190,7 @@ def notify_users(instance, **kwargs):
                                                       'start_day': route.start_day,
                                                       'stop_day': route.stop_day,
                                                       'leader': route.leader,
-                                                      'url': 'https://carpatianknights.ml'
+                                                      'url': 'https://carpatianknights.ml'  # ! change url !
                                                       })
         plain_message = strip_tags(html_message)
         send_mail(
