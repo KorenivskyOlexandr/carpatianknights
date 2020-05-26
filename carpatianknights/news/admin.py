@@ -35,3 +35,4 @@ class PhotoToRoutesAdmin(admin.ModelAdmin):
 admin.site.register(Routes, PhotoToRoutesAdmin)
 admin.site.register(PhotoToRoutes)
 admin.site.register(Tour)
+admin.site.register(Photo)

@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment, ActiveRoutes
+from .models import Post, Comment, ActiveRoutes, Photo
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 # from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -22,11 +22,8 @@ class PostListView(ListView):
 
 def main_page(request):
     year = datetime.datetime.now()
-    images = []
-    for i in os.listdir(path="/home/alex/PycharmProjects/carpatianknights/carpatianknights/news/static/images/gallery"):
-        images.append(i)
-    images.sort()
-    return render(request, 'news/post/main.html', {"year": year, "images": images})
+    images_list = Photo.objects.filter(title="gallery")
+    return render(request, 'news/post/main.html', {"year": year, "images": images_list})
 
 
 def post_list(request, tag_slug=None):
@@ -37,7 +34,7 @@ def post_list(request, tag_slug=None):
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
 
-    paginator = Paginator(object_list, 3)  # По 3 статьи на каждой странице.
+    paginator = Paginator(object_list, 10)  # По 10 статтей на каждой странице.
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)

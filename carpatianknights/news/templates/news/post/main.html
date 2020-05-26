@@ -88,7 +88,7 @@
                 <div class="ant-carousel-hider">
                   <ul class="ant-carousel-list">
                         {%  for image in images %}
-                            <li class="ant-carousel-element"><img src="{% static 'images/gallery/'%}{{ image }}" alt="{{ forloop.counter }}"></li>
+                            <li class="ant-carousel-element"><img src="{{ image.get_url }}" alt="{{ forloop.counter }}"></li>
                         {% endfor %}
                   </ul>
                 </div>

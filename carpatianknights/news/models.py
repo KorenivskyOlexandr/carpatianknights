@@ -80,8 +80,11 @@ class Photo(models.Model):
     class Meta:
         ordering = ['title']
 
-    def __str__(self):
+    def get_url(self):
         return '{}/media/{}'.format(server, self.image)
+
+    def __str__(self):
+        return self.title
 
     def save(self, *args, **kwargs):
         if not self.id:
