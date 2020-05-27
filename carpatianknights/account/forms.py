@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
-from carpatianknights.news.models import ActiveRoutes
+from carpatianknights.news.models import ActiveRoute
 from datetime import date
 
 
@@ -42,4 +42,4 @@ class LoginForm(forms.Form):
 
 class TourRegistration(forms.Form):
     active_tours = forms.ModelChoiceField(
-        queryset=ActiveRoutes.objects.filter(status=True))
+        queryset=ActiveRoute.objects.filter(status=True))

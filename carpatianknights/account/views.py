@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, TourRegistration
 from django.contrib.auth.decorators import login_required
 from .models import Profile
-from carpatianknights.news.models import Tour, ActiveRoutes
+from carpatianknights.news.models import Tour, ActiveRoute
 from django.contrib import messages
 from django.db import IntegrityError
 from datetime import date
@@ -36,7 +36,7 @@ def dashboard(request):
         tour_registration_form = TourRegistration(request.POST)
         if tour_registration_form.is_valid():
             cd = tour_registration_form.cleaned_data
-            active_tour = ActiveRoutes.objects.get(id=cd['active_tours'].id)
+            active_tour = ActiveRoute.objects.get(id=cd['active_tours'].id)
             tour = Tour(user_id=request.user, active_route_id=active_tour)
             try:
                 tour.save()

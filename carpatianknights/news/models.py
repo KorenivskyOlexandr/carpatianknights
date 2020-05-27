@@ -102,7 +102,7 @@ class Photo(models.Model):
         return uploaded_image
 
 
-class Routes(models.Model):
+class Route(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=4096)
     complexity = models.IntegerField(
@@ -113,19 +113,36 @@ class Routes(models.Model):
         return self.name
 
 
-class ActiveRoutes(models.Model):
-    routes_id = models.ForeignKey(Routes, on_delete=models.CASCADE)
+class ActiveRoute(models.Model):
+    routes_id = models.ForeignKey(Route, on_delete=models.CASCADE)
     start_day = models.DateField()
     stop_day = models.DateField()
     leader = models.CharField(max_length=256)
     status = models.BooleanField(default=False)
     is_full = models.BooleanField(default=False)
+    free_places = models.IntegerField(default=0)
+
+    def add_user(self):
+        if self.free_places > 0:
+            self.free_places -= 1
+            self.save()
+        else:
+            raise ValidationError(
+                "Похід немає вільних місць")
+
+    def remove_user(self):
+        self.free_places += 1
+        self.save()
 
     def save(self, *args, **kwargs):
         if self.start_day >= self.stop_day or self.start_day < datetime.date.today():
             raise ValidationError(
                 "Дата початку має бути меншою за дату кінця, тако ж більшою або рівною сьогоднішній")
-        super(ActiveRoutes, self).save(*args, **kwargs)
+        if self.free_places == 0:
+            self.is_full = True
+        else:
+            self.is_full = False
+        super(ActiveRoute, self).save(*args, **kwargs)
 
     def __str__(self):
         return "%s %s %s %s %s" % (self.routes_id, self.start_day,
@@ -139,13 +156,13 @@ class PhotoToPost(Photo):
 
 class PhotoToRoutes(Photo):
     routes_id = models.ForeignKey(
-        Routes, on_delete=models.CASCADE, related_name='photos')
+        Route, on_delete=models.CASCADE, related_name='photos')
 
 
 class Tour(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
-    active_route_id = models.ForeignKey(ActiveRoutes, on_delete=models.CASCADE)
+    active_route_id = models.ForeignKey(ActiveRoute, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
 
     class Meta:
@@ -160,11 +177,11 @@ def notify_admin(instance, created, **kwargs):
     """Сповіщення адмінів про реєстрацію користувача на похід"""
     if created:
         user = instance.user_id
-        route = instance.active_route_id
-        html_message = render_to_string('admin.html', {'route': route.routes_id,
-                                                       'start_day': route.start_day,
-                                                       'stop_day': route.stop_day,
-                                                       'leader': route.leader,
+        active_route = instance.active_route_id
+        html_message = render_to_string('admin.html', {'route': active_route.routes_id,
+                                                       'start_day': active_route.start_day,
+                                                       'stop_day': active_route.stop_day,
+                                                       'leader': active_route.leader,
                                                        'full_name': user.get_full_name(),
                                                        'phone': user.profile.phone_number,
                                                        'age': user.profile.date_of_birth,
@@ -185,22 +202,46 @@ def notify_admin(instance, created, **kwargs):
 
 @receiver(signals.pre_save, sender=Tour)
 def notify_users(instance, **kwargs):
-    """Сповіщення юзера про те що його прийнято в похід"""
-    if instance.status:
-        user = instance.user_id
-        route = instance.active_route_id
-        html_message = render_to_string('mail.html', {'route': route.routes_id,
-                                                      'start_day': route.start_day,
-                                                      'stop_day': route.stop_day,
-                                                      'leader': route.leader,
-                                                      'url': 'https://carpatianknights.ml'  # ! change url !
-                                                      })
-        plain_message = strip_tags(html_message)
-        send_mail(
-            subject='Карпатські Відчайдухи',
-            message=plain_message,
-            from_email='carpatianknights@gmail.com',
-            recipient_list=[user.email],
-            html_message=html_message,
-            fail_silently=False,
-        )
+    """Сповіщення юзера про те що його прийнято в похід,
+        а також збільшення/зменшення кількості вільних місць в поході"""
+    status = False
+    try:
+        tour = Tour.objects.get(id=instance.id)
+        status = tour.status
+    except Exception:
+        pass
+    if instance.status != status:
+        if instance.status:
+            user = instance.user_id
+            active_route = instance.active_route_id
+            if active_route.is_full:
+                raise ValidationError(
+                    "Похід немає вільних місць")
+            else:
+                active_route.add_user()
+                sent_user_mail(user, active_route)
+        else:
+            instance.active_route_id.remove_user()
+
+
+@receiver(signals.post_delete, sender=Tour)
+def remove_user(instance, **kwargs):
+    instance.active_route_id.remove_user()
+
+
+def sent_user_mail(user, active_route):
+    html_message = render_to_string('mail.html', {'route': active_route.routes_id,
+                                                  'start_day': active_route.start_day,
+                                                  'stop_day': active_route.stop_day,
+                                                  'leader': active_route.leader,
+                                                  'url': 'https://carpatianknights.ml'  # ! change url !
+                                                  })
+    plain_message = strip_tags(html_message)
+    send_mail(
+        subject='Карпатські Відчайдухи',
+        message=plain_message,
+        from_email='carpatianknights@gmail.com',
+        recipient_list=[user.email],
+        html_message=html_message,
+        fail_silently=False,
+    )

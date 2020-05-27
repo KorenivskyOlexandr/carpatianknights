@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Photo, PhotoToPost, PhotoToRoutes, Routes, ActiveRoutes, Tour
+from .models import Post, Comment, Photo, PhotoToPost, PhotoToRoutes, Route, ActiveRoute, Tour
 
 
 @admin.register(Post)
@@ -20,7 +20,7 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'body')
 
 
-admin.site.register(ActiveRoutes)
+admin.site.register(ActiveRoute)
 admin.site.register(PhotoToPost)
 
 
@@ -32,7 +32,7 @@ class PhotoToRoutesAdmin(admin.ModelAdmin):
     inlines = [PhotoToRoutesInlane]
 
 
-admin.site.register(Routes, PhotoToRoutesAdmin)
+admin.site.register(Route, PhotoToRoutesAdmin)
 admin.site.register(PhotoToRoutes)
 admin.site.register(Tour)
 admin.site.register(Photo)

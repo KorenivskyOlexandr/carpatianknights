@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment, ActiveRoutes, Photo
+from .models import Post, Comment, ActiveRoute, Photo
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 # from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -10,7 +10,6 @@ from .forms import EmailPostForm, CommentForm, SearchForm
 from taggit.models import Tag
 from django.db.models import Count
 import datetime
-import os
 
 
 class PostListView(ListView):
@@ -105,7 +104,7 @@ def post_share(request, post_id):
 
 
 def active_tour_page(request):
-    active_tour_list = ActiveRoutes.objects.filter(status=True)
+    active_tour_list = ActiveRoute.objects.filter(status=True)
     return render(request, 'news/post/active_tours.html', {'active_tour_list': active_tour_list})
 
 # def post_search(request):
