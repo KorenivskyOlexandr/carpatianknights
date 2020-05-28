@@ -22,7 +22,7 @@ class PostListView(ListView):
 def main_page(request):
     year = datetime.datetime.now()
     images_list = Photo.objects.filter(title="gallery")  # в слайдер попадають стиснені фотографігі з title="gallery"
-    return render(request, 'news/post/main.html', {"year": year, "images": images_list})
+    return render(request, 'main.html', {"year": year, "images": images_list})
 
 
 def post_list(request, tag_slug=None):

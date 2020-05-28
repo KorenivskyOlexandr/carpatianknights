@@ -4,17 +4,11 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {#    {% load scss %}#}
-    {#    <link rel="stylesheet" href="{{ STATIC_URL}}{% scss 'css/news.scss' %}" />#}
-    {#    <link href="{% static 'css/news.scss' %}" rel="stylesheet">#}
-    {#    {% load sass_tags %}#}
-    {#    <link href="{% sass_src 'news/css/news.scss' %}" rel="stylesheet" type="text/css" />#}
     {% load compress %}
 
     {% compress css %}
         <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet" media="screen">
     {% endcompress %}
-        {% comment %} <link href="{% static "css/base.css" %}" rel="stylesheet"> {% endcomment %}
 </head>
 <body>
 <div class="App" id="content">
@@ -30,13 +24,13 @@
             <li class="nav-item">
                 <a class="active" href="/">
                     <svg focusable="false" data-prefix="fas" data-icon="campground"
-                         class="svg-inline--fa fa-campground fa-w-20 campground" role="img" xmlns="http://www.w3.org/2000/svg"
+                         class="svg-inline--fa fa-campground fa-w-20 campground" role="img"
+                         xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 640 512">
                         <path fill="currentColor"
                               d="M624 448h-24.68L359.54 117.75l53.41-73.55c5.19-7.15 3.61-17.16-3.54-22.35l-25.9-18.79c-7.15-5.19-17.15-3.61-22.35 3.55L320 63.3 278.83 6.6c-5.19-7.15-15.2-8.74-22.35-3.55l-25.88 18.8c-7.15 5.19-8.74 15.2-3.54 22.35l53.41 73.55L40.68 448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h608c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM320 288l116.36 160H203.64L320 288z"></path>
                     </svg>
                 </a>
-            </li>
             </li>
             <li class="nav-item">
                 <a href="/news"><span>Новини</span></a>
@@ -68,24 +62,9 @@
     {% block content %}{% endblock %}
 
 </div>
-{#<div id="sidebar">#}
-{#    <h2>My blog</h2>#}
-{#    <p>This is my blog. I've written {% total_posts %} posts so far.</p>#}
-{#    <p><a href="{% url 'news:post_feed' %}">Subscribe to my RSS feed</a></p>#}
-{#    <h3>Latest posts</h3>#}
-{#    {% show_latest_posts 3 %}#}
-{##}
-{#    <h3>Most commented posts</h3>#}
-{#    {% get_most_commented_posts as most_commented_posts %}#}
-{#    <ul>#}
-{#        {% for post in most_commented_posts %}#}
-{#            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>#}
-{#        {% endfor %}#}
-{#    </ul>#}
 <script type="text/javascript" src="{% static 'script/news.js' %}"></script>
 {% compress js %}
-<script type="module" src="{% static 'script/script.js' %}"></script>
+    <script type="module" src="{% static 'script/script.js' %}"></script>
 {% endcompress %}
-</div>
 </body>
 </html>

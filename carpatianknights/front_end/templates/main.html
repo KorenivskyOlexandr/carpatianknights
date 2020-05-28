@@ -1,4 +1,4 @@
-{% extends "news/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -83,20 +83,21 @@
                     </a>
                 </div>
             </article>
-           <section class="m-gallery-slider">
-            <div class="ant-carousel">
-                <div class="ant-carousel-hider">
-                  <ul class="ant-carousel-list">
-                        {%  for image in images %}
-                            <li class="ant-carousel-element"><img src="{{ image.get_url }}" alt="{{ forloop.counter }}"></li>
-                        {% endfor %}
-                  </ul>
+            <section class="m-gallery-slider">
+                <div class="ant-carousel">
+                    <div class="ant-carousel-hider">
+                        <ul class="ant-carousel-list">
+                            {% for image in images %}
+                                <li class="ant-carousel-element"><img src="{{ image.get_url }}"
+                                                                      alt="{{ forloop.counter }}"></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="ant-carousel-arrow-left"></div>
+                    <div class="ant-carousel-arrow-right"></div>
+                    <div class="ant-carousel-dots"></div>
                 </div>
-                <div class="ant-carousel-arrow-left"></div>
-                <div class="ant-carousel-arrow-right"></div>
-                <div class="ant-carousel-dots"></div>
-              </div>
-           </section
+            </section>
         </main>
         <footer>
             <p>2014 - {{ year|date:"Y" }} - Всі права збережені. Жека недокодив.</p>
