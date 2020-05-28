@@ -7,6 +7,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.text import slugify
 from taggit.managers import TaggableManager
 from django.core.validators import *
 from django.conf import settings
@@ -116,6 +117,11 @@ class Route(models.Model):
 
     def get_absolute_url(self):
         return reverse('route:detail', args=[self.id, self.slug])
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Route, self).save(*args, **kwargs)
 
 
 class ActiveRoute(models.Model):

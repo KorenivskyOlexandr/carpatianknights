@@ -17,7 +17,7 @@
             <div class="active_tour_description">{{ active_tour.routes_id.description|markdown }}</div>
             <div class="active_tour_image">
                 {% for tour_image in active_tour.routes_id.photos.all %}
-                    <img src="{{ tour_image }}" alt="">
+                    <img src="{{ tour_image.get_url }}" alt="">
                 {% endfor %}
             </div>
             {% fontawesome_stylesheet %}
