@@ -83,6 +83,9 @@
 {#        {% endfor %}#}
 {#    </ul>#}
 <script type="text/javascript" src="{% static 'script/news.js' %}"></script>
+{% compress js %}
+<script type="module" src="{% static 'script/script.js' %}"></script>
+{% endcompress %}
 </div>
 </body>
 </html>

@@ -1,0 +1,31 @@
+{
+  "name": "carpatianknights",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KorenivskyOlexandr/carpatianknights.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KorenivskyOlexandr/carpatianknights/issues"
+  },
+  "homepage": "https://github.com/KorenivskyOlexandr/carpatianknights#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "node-sass": "^4.5.3",
+    "postcss-cli": "^4.1.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1"
+  }
+}
