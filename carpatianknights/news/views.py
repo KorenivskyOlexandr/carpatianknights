@@ -104,7 +104,7 @@ def post_share(request, post_id):
 
 
 def active_tour_page(request):
-    active_tour_list = ActiveRoute.objects.filter(status=True)
+    active_tour_list = ActiveRoute.objects.filter(status=True, is_full=False)
     return render(request, 'news/post/active_tours.html', {'active_tour_list': active_tour_list})
 
 # def post_search(request):

@@ -42,4 +42,4 @@ class LoginForm(forms.Form):
 
 class TourRegistration(forms.Form):
     active_tours = forms.ModelChoiceField(
-        queryset=ActiveRoute.objects.filter(status=True))
+        queryset=ActiveRoute.objects.filter(status=True, is_full=False))

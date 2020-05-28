@@ -105,12 +105,17 @@ class Photo(models.Model):
 class Route(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=4096)
+    short_description = models.TextField(max_length=1000)
+    slug = models.SlugField(max_length=250, unique=True)
     complexity = models.IntegerField(
         validators=[MaxValueValidator(limit_value=10, message='Складність не має бути вище 10'),
                     MinValueValidator(limit_value=1, message='Складність не має бути нижче 1')])
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('route:detail', args=[self.id, self.slug])
 
 
 class ActiveRoute(models.Model):

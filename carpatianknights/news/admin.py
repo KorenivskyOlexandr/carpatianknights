@@ -32,7 +32,14 @@ class PhotoToRoutesAdmin(admin.ModelAdmin):
     inlines = [PhotoToRoutesInlane]
 
 
-admin.site.register(Route, PhotoToRoutesAdmin)
+@admin.register(Route, PhotoToRoutesAdmin)
+class RouteAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'complexity')
+    list_filter = ('name', 'slug', 'complexity')
+    search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(PhotoToRoutes)
 admin.site.register(Tour)
 admin.site.register(Photo)

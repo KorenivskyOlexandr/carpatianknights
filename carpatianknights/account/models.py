@@ -15,7 +15,6 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         date_16 = datetime.timedelta(days=5840)
-        print(datetime.date.today(), self.date_of_birth, date_16)
         if (datetime.date.today() - self.date_of_birth) < date_16:
             raise ValidationError(
                 "16+, або супровід батьків")
