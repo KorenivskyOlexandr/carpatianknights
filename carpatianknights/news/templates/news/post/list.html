@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load news_tags %}
 {% block content %}
-{#    {% if tag %}#}
-{#        <h2>Posts tagged with "{{ tag.name }}"</h2>#}
-{#    {% endif %}#}
     <div class="headers-container"><h2>Новини</h2></div>
     <div>
         <div class="news-container">
@@ -25,7 +22,7 @@
         </div>
     </div>
 
-{#    {% include "pagination.html" with page=posts %}#}
+    {#    {% include "pagination.html" with page=posts %}#}
     <script>
     </script>
 {% endblock %}

@@ -1,15 +1,12 @@
-from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment, ActiveRoute, Photo, Route
+from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 # from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from .forms import EmailPostForm, CommentForm, SearchForm
+from .forms import CommentForm
 # from django.contrib.postgres.search import TrigramSimilarity
 from taggit.models import Tag
 from django.db.models import Count
-import datetime
 
 
 class PostListView(ListView):
@@ -17,12 +14,6 @@ class PostListView(ListView):
     context_object_name = 'posts'
     paginate_by = 10
     template_name = 'news/post/list.html'
-
-
-def main_page(request):
-    year = datetime.datetime.now()
-    images_list = Photo.objects.filter(title="gallery")  # в слайдер попадають стиснені фотографігі з title="gallery"
-    return render(request, 'main.html', {"year": year, "images": images_list})
 
 
 def post_list(request, tag_slug=None):
@@ -75,47 +66,6 @@ def post_detail(request, year, month, day, post):
                                                      'new_comment': new_comment,
                                                      'comment_form': comment_form,
                                                      'similar_posts': similar_posts})
-
-
-def post_share(request, post_id):
-    # отримання статті по ідентифікатору
-    post = get_object_or_404(Post, id=post_id, status='published')
-    sent = False
-    if request.method == "POST":
-        # форма була відправлена на зберігання
-        form = EmailPostForm(request.POST)
-        if form.is_valid():
-            cd = form.changed_data
-            # ... відправка електронного листа
-            post_url = request.build_absolute_uri(post.get_absolute_url())
-            subject = '{} ({}) recommends you reading "' \
-                      '{}"'.format(cd['name'], cd['email'], post.title)
-            message = 'Read "{}" at {}\n\n{}\'s comments:' \
-                      '{}'.format(post.title, post_url,
-                                  cd['name'], cd['comments'])
-            send_mail(subject, message, 'admin@myblog.com', [cd['to']])
-            sent = True
-        else:
-            return HttpResponse(u'Куда прёшь?', status_code=400)
-    else:
-        form = EmailPostForm()
-        return render(request, 'news/post/share.html',
-                      {'post': post, 'form': form, 'sent': sent})
-
-
-def active_tour_page(request):
-    active_tour_list = ActiveRoute.objects.filter(status=True, is_full=False)
-    return render(request, 'tour/active_tours.html', {'active_tour_list': active_tour_list})
-
-
-def route_page(request):
-    route = Route.objects.all()
-    return render(request, 'tour/route.html', {'route_list': route})
-
-
-def route_detail(request, id, slug):
-    route = get_object_or_404(Route, id=id, slug=slug)
-    return render(request, 'tour/route_detail.html', {'route': route})
 
 
 # def post_search(request):

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, TourRegistration
 from django.contrib.auth.decorators import login_required
 from .models import Profile
-from carpatianknights.news.models import Tour, ActiveRoute
+from carpatianknights.route.models import Tour, ActiveRoute
 from django.contrib import messages
 from django.db import IntegrityError
 from datetime import date

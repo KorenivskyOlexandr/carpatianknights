@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
-from carpatianknights.news.models import ActiveRoute
+from carpatianknights.route.models import ActiveRoute
 from datetime import date
 
 

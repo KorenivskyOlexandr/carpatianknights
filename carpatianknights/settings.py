@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_scss',
     'compressor',
     'fontawesome',
-    'carpatianknights.front_end'
+    'carpatianknights.front_end',
+    'carpatianknights.route'
 
 ]
 
@@ -199,3 +200,5 @@ COMPRESS_PRECOMPILERS = (
 )
 
 COMPRESS_ENABLED = True
+
+SERVER = 'http://127.0.0.1:8000'
