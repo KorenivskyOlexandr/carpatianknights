@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment, ActiveRoute, Photo
+from .models import Post, Comment, ActiveRoute, Photo, Route
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 # from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
@@ -105,7 +105,18 @@ def post_share(request, post_id):
 
 def active_tour_page(request):
     active_tour_list = ActiveRoute.objects.filter(status=True, is_full=False)
-    return render(request, 'news/post/active_tours.html', {'active_tour_list': active_tour_list})
+    return render(request, 'tour/active_tours.html', {'active_tour_list': active_tour_list})
+
+
+def route_page(request):
+    route = Route.objects.all()
+    return render(request, 'tour/route.html', {'route_list': route})
+
+
+def route_detail(request, id, slug):
+    route = get_object_or_404(Route, id=id, slug=slug)
+    return render(request, 'tour/route_detail.html', {'route': route})
+
 
 # def post_search(request):
 #     form = SearchForm()

@@ -1,0 +1,25 @@
+{% extends "news/base.html" %}
+{% load active_tour_tags %}
+{% load static %}
+{% block content %}
+<div class="headers-container"><h2>Наші маршрути</h2></div>
+<div class="active-tours-container">
+    {% for route in route_list %}
+        <div class="tour-card">
+            <h3>{{ route.name }}</h3>
+            <p>Сладність: {{ route.complexity }}</p>
+            <div class="active_tour_description">{{ route.short_description|markdown }}</div>
+            <div class="active_tour_image">
+                {% for route_image in route.photos.all %}
+                    <img src="{{ route_image.image.url }}" alt="">
+                {% endfor %}
+            </div>
+            <button class="button_register">
+                <a class="href_register" href="{{ route.get_absolute_url }}">Детальніше</a>
+            </button>
+        </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}
