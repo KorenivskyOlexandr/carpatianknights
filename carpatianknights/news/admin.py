@@ -2,6 +2,10 @@ from django.contrib import admin
 from .models import Post, Comment, PhotoToPost
 
 
+class PhotoToPostInlane(admin.StackedInline):
+    model = PhotoToPost
+
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
@@ -11,6 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
+    inlines = [PhotoToPostInlane]
 
 
 @admin.register(Comment)
@@ -20,4 +25,3 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'body')
 
 
-admin.site.register(PhotoToPost)

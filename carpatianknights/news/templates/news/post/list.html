@@ -9,12 +9,14 @@
                     <div class="news-card-container">
                         <div class="news-card">
                             <p class="title">{{ post.title }}</p>
-                            <span class="news-date">{{ post.publish }}</span>
+                            <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
                             <div class="describe-block">
-                                {{ post.body|markdown }}
+                                {{ post.body|markdown|truncatewords_html:40 }}
                                 <p>{{ post.author }}</p>
                             </div>
-                            <button class="button_news" id="{{ post.id }}">Розгорнути</button>
+                            <button class="button_news" id="{{ post.id }}">
+                                <a href="{{ post.get_absolute_url }}">Детальніше</a>
+                            </button>
                         </div>
                     </div>
                 {% endfor %}
@@ -22,7 +24,7 @@
         </div>
     </div>
 
-    {#    {% include "pagination.html" with page=posts %}#}
+    {% include "pagination.html" with page=posts %}
     <script>
     </script>
 {% endblock %}
