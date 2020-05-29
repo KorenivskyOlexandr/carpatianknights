@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'carpatianknights.news',
     'taggit',
     'sass_processor',
-    'django_scss',
     'compressor',
     'carpatianknights.front_end',
     'carpatianknights.route'
@@ -143,7 +142,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
-    'django_scss.finders.SCSSFinder',
     'compressor.finders.CompressorFinder',
 ]
 
