@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'sass_processor',
     'django_scss',
     'compressor',
-    'fontawesome',
     'carpatianknights.front_end',
     'carpatianknights.route'
 

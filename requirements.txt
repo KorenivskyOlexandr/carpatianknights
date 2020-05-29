@@ -1,9 +1,10 @@
 asgiref==3.2.7
 astroid==2.4.1
+autopep8==1.5.2
 Django==3.0.6
 django-appconf==1.0.4
 django-compressor==2.4
-django-fontawesome==1.0
+django-compressor-toolkit==0.6.0
 django-libsass==0.8
 django-sass-processor==0.8
 django-scss==0.6.1
@@ -18,7 +19,10 @@ Pillow==7.1.2
 pkg-resources==0.0.0
 psycopg2==2.8.5
 psycopg2-binary==2.8.5
+pycodestyle==2.6.0
 pylint==2.5.2
+pylint-django==2.0.15
+pylint-plugin-utils==0.6
 pytz==2020.1
 PyYAML==5.3.1
 rcssmin==1.0.6
