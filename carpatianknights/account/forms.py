@@ -18,11 +18,12 @@ class ProfileEditForm(forms.ModelForm):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    phone_number = forms.RegexField(regex=r'\d{9}')
+    phone_number = forms.RegexField(regex=r'\d{9}', label='Phone number', label_suffix=' +380')
     date_of_birth = forms.DateField(widget=forms.SelectDateWidget(years=range(1970, date.today().year)))
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Repeat password', widget=forms.PasswordInput)
+    accept = forms.BooleanField(label='Згода на обробку персональних данних', required=True)
 
     class Meta:
         model = User
