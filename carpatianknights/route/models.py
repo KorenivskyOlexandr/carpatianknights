@@ -56,7 +56,7 @@ class ActiveRoute(models.Model):
         self.save()
 
     def save(self, *args, **kwargs):
-        if self.start_day >= self.stop_day or self.start_day < datetime.date.today():
+        if (self.start_day >= self.stop_day or self.start_day < datetime.date.today()) and self.status:
             raise ValidationError(
                 "Дата початку має бути меншою за дату кінця, тако ж більшою або рівною сьогоднішній")
         if self.free_places == 0:

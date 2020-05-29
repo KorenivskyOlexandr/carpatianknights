@@ -44,10 +44,12 @@ def dashboard(request):
                     request, 'Заявку подано успішно подано, глава походу зв\'яжеться з вами')
             except IntegrityError:
                 messages.error(request, 'Ви вже подавали заявку на цей тур')
-    confirm_tour = Tour.objects.all().filter(user_id=request.user.id)
+    user_active_tour = Tour.objects.all().filter(user_id=request.user.id, active_route_id__status=True)
+    user_history_tour = Tour.objects.all().filter(user_id=request.user.id, active_route_id__status=False)
     context = {'section': 'dashboard',
                'tour_registration_form': TourRegistration(),
-               'confirm_tour': confirm_tour,
+               'user_active_tour': user_active_tour,
+               'user_history_tour': user_history_tour,
                'user': request.user}
     return render(request, 'account/dashboard.html', context)
 
