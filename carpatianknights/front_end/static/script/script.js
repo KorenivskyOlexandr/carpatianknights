@@ -1,1 +1,5 @@
-import "bootstrap/dist/js/bootstrap.bundle.js"
+import {hamburgerToggle} from "./custom/toggle-menu";
+
+document.addEventListener("DOMContentLoaded", ()=> {
+    hamburgerToggle();
+});

@@ -1,13 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&subset=cyrillic');
-@import url('https://fonts.googleapis.com/css?family=Arsenal:700&display=swap&subset=cyrillic');
-@import "../utilities/colors";
-.App {
-  width: 100vw;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
+
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -19,6 +10,7 @@ main {
   min-height: 100vh;
   overflow: auto;
   overflow-x: hidden;
+  font: 400 16px $font;
 }
 
 .perspective-container {
@@ -62,34 +54,17 @@ body {
 }
 
 header {
-  position: absolute;
-  top: 15px;
-  right: 0;
-  left: 0;
-  margin: 0 auto;
-  text-align: center;
-}
 
-//footer {
-//  position: absolute;
-//  bottom: 15px;
-//  right: 0;
-//  left: 0;
-//  margin: 0 auto;
-//  text-align: center;
-//  z-index: -1;
-//}
+}
 
 h1 {
-  color: white;
-  letter-spacing: 2px;
-  font-family: Dancing Script, sans-serif;
+
 }
 h2 {
-  font-family: Montserrat, sans-serif;
+
 }
 h3 {
-  font-size: 24px;
+
 }
 
 ul {
@@ -98,27 +73,4 @@ ul {
 }
 li {
   list-style: none;
-}
-
-.p-black {
-  color: $main-black-text;
-}
-.p-white {
-  color: $main-section-color;
-}
-
-button {
-  width: 75px;
-  height: 50px;
-  border: none;
-  background: rgba(0,0,0,0.5);
-  color: white;
-  //transform: skew(-25deg);
-  //svg {
-  //  transform: skew(25deg);
-  //}
-
-}
-pre {
-  white-space: pre-wrap;
 }

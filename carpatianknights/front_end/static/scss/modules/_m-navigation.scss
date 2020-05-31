@@ -3,8 +3,7 @@
   left: -300px;
   width: 300px;
   height: 100vh;
-  background-color: rgba(0,0,0,0.6);
-  //background-color: #1c1c1c;
+  background-color: $dark;
   position: fixed;
   transition: all 0.5s ease-in-out;
   z-index: 100;
@@ -15,6 +14,7 @@
 
   .ul-container {
     margin-top: 150px;
+
     .nav-item {
       display: flex;
       flex-direction: column;
@@ -33,11 +33,13 @@
         transition: all 0.8s;
         position: relative;
         overflow: hidden;
+
         span {
           position: absolute;
           margin: 0 auto;
           z-index: 10;
         }
+
         &::before {
           content: '';
           position: absolute;
@@ -49,11 +51,12 @@
           margin: 0 auto;
           border-left: 150px solid transparent;
           border-right: 150px solid transparent;
-          border-bottom: 180px solid rgba(0,77,77,0.25);
+          border-bottom: 180px solid rgba(0, 77, 77, 0.25);
           z-index: 1;
           transition: all 0.5s;
 
         }
+
         &::after {
           content: '';
           position: absolute;
@@ -65,28 +68,32 @@
           margin: 0 auto;
           border-left: 150px solid transparent;
           border-right: 150px solid transparent;
-          border-bottom: 180px solid rgba(0,77,77,0.25);
+          border-bottom: 180px solid rgba(0, 77, 77, 0.25);
           z-index: 1;
           transition: all 0.5s;
-          transition-delay:  0.2s;
+          transition-delay: 0.2s;
         }
+
         &:hover::before {
           opacity: 1;
-          transform: translate(0px,-170px);
+          transform: translate(0px, -170px);
         }
+
         &:hover::after {
           opacity: 1;
-          transform: translate(0px,-140px);
+          transform: translate(0px, -140px);
         }
       }
     }
   }
+
+  &.open {
+    left: 0;
+    transition: 0.4s ease-in-out;
+  }
 }
-.menu-open {
-  left: 0;
-  transition: 0.4s ease-in-out;
-}
-.campground{
+
+.campground {
   width: 35px;
   height: 35px;
 }
