@@ -30,18 +30,21 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'carpatianknights.account',
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'carpatianknights.news',
+    'carpatianknights.front_end',
+    'carpatianknights.route',
+    'django_filters',
     'taggit',
     'sass_processor',
     'compressor',
-    'carpatianknights.front_end',
-    'carpatianknights.route'
+    'compressor_toolkit',
+    'svg',
 
 ]
 
@@ -174,10 +177,6 @@ AUTHENTICATION_BACKENDS = [
     'carpatianknights.account.authentication.EmailAuthBackend',
 ]
 
-INSTALLED_APPS += (
-    'compressor_toolkit',
-    'svg'
-)
 
 STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
