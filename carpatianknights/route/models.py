@@ -10,7 +10,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 import datetime
 from django.contrib.auth.models import User
-from carpatianknights.front_end.models import Photo
+from carpatianknights.front_end.models import Photo, compress_image
 
 
 class Route(models.Model):
@@ -21,6 +21,7 @@ class Route(models.Model):
     complexity = models.IntegerField(
         validators=[MaxValueValidator(limit_value=10, message='Складність не має бути вище 10'),
                     MinValueValidator(limit_value=1, message='Складність не має бути нижче 1')])
+    title_img = models.ImageField(upload_to='route_img/', null=True)
 
     def __str__(self):
         return self.name
@@ -31,6 +32,8 @@ class Route(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        if self.title_img:
+            self.title_img = compress_image(self.title_img, (1200, 720))
         super(Route, self).save(*args, **kwargs)
 
 
