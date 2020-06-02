@@ -7,13 +7,7 @@ from .forms import CommentForm
 # from django.contrib.postgres.search import TrigramSimilarity
 from taggit.models import Tag
 from django.db.models import Count
-
-
-class PostListView(ListView):
-    queryset = Post.published.all()
-    context_object_name = 'posts'
-    paginate_by = 10
-    template_name = 'news/post/list.html'
+from .filters import PostFilter
 
 
 def post_list(request, tag_slug=None):
@@ -34,7 +28,10 @@ def post_list(request, tag_slug=None):
     except EmptyPage:
         # Если номер страницы больше, чем общее количество страниц, возвращаем последнюю.
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'news/post/list.html', {'page': page, 'posts': posts, 'tag': tag})
+    my_filter = PostFilter(request.GET, queryset=object_list)
+    posts = my_filter.qs
+    context = {'page': page, 'posts': posts, 'tag': tag, 'my_filter': my_filter}
+    return render(request, 'news/post/list.html', context)
 
 
 def post_detail(request, year, month, day, post):

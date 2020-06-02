@@ -6,30 +6,31 @@ this project is implemented on django
 1 Сreate a folder and clone this project
 
 ```bash
-$ makedir carpatianknights
-$ cd carpatianknights
-$ git clone "https://github.com/KorenivskyOlexandr/carpatianknights.git"
+makedir carpatianknights
+cd carpatianknights
+git clone "https://github.com/KorenivskyOlexandr/carpatianknights.git"
 ```
-2 You mast create virtualenv in project folder and activate one
+2 You should create virtualenv in project folder and activate one
 
 ```bash
-$ python3 -m venv my_venv
-$ source my_venv/bin/activate
-(my_venv) $
+python3 -m venv venv
+source venv/bin/activate
+(venv) $
 ```
+Further we work only with venv
 
-3 Installation python packages 
+3 Installation python packages
 
 ```bash
-(my_venv) $ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 4 Create database and superuser
 
 ```bash
-(my_venv) $ python manage.py makemigrations
-(my_venv) $ python manage.py migrate
-(my_venv) $ python manage.py createsuperuser
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
 ```
 
 ## Usage
@@ -37,14 +38,14 @@ $ source my_venv/bin/activate
 Server start
 
 ```bash
-(my_venv) $ python manage.py runserver
+python manage.py runserver
 ```
 
 You may stop your server use CTRL + C
 
-Exit from my_venv
+Exit from venv
 ```bash
-(my_venv) $ deactive
+(venv) $ deactive
 $
 ```
 

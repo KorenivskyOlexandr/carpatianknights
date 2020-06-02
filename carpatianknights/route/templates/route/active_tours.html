@@ -13,7 +13,7 @@
                 <p>Сладність: {{ active_tour.routes_id.complexity }}</p>
                 <p>Кількість вільних місць: {{ active_tour.free_places }}</p>
                 {% comment %} <progress value="{{ active_tour.routes_id.complexity }}"></progres> {% endcomment %}
-                <div class="active_tour_description">{{ active_tour.routes_id.short_description|markdown }}</div>
+                <div class="active_tour_description">{{ active_tour.routes_id.description|markdown|truncatewords_html:80 }}</div>
 {#                <div class="active_tour_image">#}
 {#                    {% for tour_image in active_tour.routes_id.photos.all %}#}
 {#                        <img src="{{ tour_image.image.url }}" alt="">#}
