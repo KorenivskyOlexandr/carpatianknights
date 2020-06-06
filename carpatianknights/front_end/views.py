@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import datetime
 from .models import Photo
+import git
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def main_page(request):
@@ -8,3 +11,17 @@ def main_page(request):
     images_list = Photo.objects.filter(
         title__startswith="gallery")  # в слайдер попадають стиснені фотографігі які починаються на "gallery"
     return render(request, 'main.html', {"year": year, "images": images_list})
+
+
+@csrf_exempt
+def update(request):
+    if request.method == "POST":
+
+        repo = git.Repo("/home/alex/carpatianknights/")
+        origin = repo.remotes.origin
+
+        origin.pull()
+
+        return HttpResponse("Updated code on server")
+    else:
+        return HttpResponse("Couldn't update the code on server")
