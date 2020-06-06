@@ -84,7 +84,6 @@ WSGI_APPLICATION = 'carpatianknights.wsgi.application'
 
 DATABASES = constant.DATABASES
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -162,7 +161,6 @@ AUTHENTICATION_BACKENDS = [
     'carpatianknights.account.authentication.EmailAuthBackend',
 ]
 
-
 STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
 )
@@ -185,3 +183,5 @@ COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
 SERVER = 'http://127.0.0.1:8000'
+
+TEST = "TEST"
