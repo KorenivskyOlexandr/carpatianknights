@@ -184,4 +184,4 @@ COMPRESS_OFFLINE = True
 
 SERVER = 'http://127.0.0.1:8000'
 
-TEST = "TEST test"
+TEST = "TEST"
