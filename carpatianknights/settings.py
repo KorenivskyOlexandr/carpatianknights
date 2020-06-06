@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import carpatianknights.constant as constant
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bd5fk4luo2v+ao3*$-w=@15f9(x)4-4q(odl@%t(lp9ibg-&_^'
+SECRET_KEY = constant.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = constant.DEBUG
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = constant.ALLOWED_HOSTS
 
 # Application definition
 
@@ -81,23 +82,7 @@ WSGI_APPLICATION = 'carpatianknights.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'myproject',
-#         'USER': 'admin',
-#         'PASSWORD': 's5a5s5h5a5',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+DATABASES = constant.DATABASES
 
 
 # Password validation
@@ -169,8 +154,8 @@ LOGOUT_URL = 'logout'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'carpatianknights@gmail.com'
-EMAIL_HOST_PASSWORD = 'carpatian2019'
+EMAIL_HOST_USER = constant.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = constant.EMAIL_HOST_PASSWORD
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
