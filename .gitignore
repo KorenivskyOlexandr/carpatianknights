@@ -8,6 +8,7 @@ __pycache__/
 .vscode/
 .idea/
 static/CACHE/*
+carpatianknights/front_end/static/CACHE/*
 # Distribution / packaging
 .Python
 env/
