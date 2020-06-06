@@ -4,6 +4,7 @@ from .models import Photo
 import git
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from carpatianknights.settings import BASE_DIR
 
 
 def main_page(request):
@@ -17,7 +18,7 @@ def main_page(request):
 def update(request):
     if request.method == "POST":
 
-        repo = git.Repo("/home/alex/carpatianknights/")
+        repo = git.Repo(BASE_DIR)
         origin = repo.remotes.origin
 
         origin.pull()
