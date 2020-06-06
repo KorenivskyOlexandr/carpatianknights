@@ -179,8 +179,8 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+COMPRESS_ENABLED = constant.COMPRESS_ENABLED
+COMPRESS_OFFLINE = constant.COMPRESS_OFFLINE
 
 SERVER = 'http://127.0.0.1:8000'
 
