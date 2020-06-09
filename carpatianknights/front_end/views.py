@@ -26,3 +26,4 @@ def update(request):
         return HttpResponse("Updated code on server")
     else:
         return HttpResponse("Couldn't update the code on server")
+        # test comment
