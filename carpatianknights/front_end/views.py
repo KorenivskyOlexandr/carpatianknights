@@ -18,7 +18,7 @@ def main_page(request):
 def update(request):
     if request.method == "POST":
 
-        rc = subprocess.call("prod_git_pull_fetch.sh")
+        rc = subprocess.call("{}/prod_git_pull_fetch.sh".format(BASE_DIR))
 
         return HttpResponse("Updated code on server")
     else:
