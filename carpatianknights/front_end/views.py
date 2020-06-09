@@ -25,4 +25,4 @@ def update(request):
 
         return HttpResponse("Updated code on server")
     else:
-        return HttpResponse("Couldn't update the code on server, {}".format(BASE_DIR))
+        return HttpResponse("Couldn't update the code on server")
