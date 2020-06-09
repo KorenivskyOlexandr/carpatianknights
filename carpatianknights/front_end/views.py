@@ -16,14 +16,14 @@ def main_page(request):
 
 @csrf_exempt
 def update(request):
-    if request.method == "POST":
+    if request.method == "GET":
 
         repo = git.Repo(BASE_DIR)
         origin = repo.remotes.origin
 
         origin.pull()
 
-        return HttpResponse("Updated code on server")
+        return HttpResponse("Updated code on server {}".format(repo))
     else:
         return HttpResponse("Couldn't update the code on server")
         # test comment sdsdasd
