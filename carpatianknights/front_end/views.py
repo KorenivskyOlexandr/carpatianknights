@@ -16,7 +16,7 @@ def main_page(request):
 
 @csrf_exempt
 def update(request):
-    if request.method == "GET":
+    if request.method == "POST":
 
         rc = subprocess.call("prod_git_pull_fetch.sh")
 
