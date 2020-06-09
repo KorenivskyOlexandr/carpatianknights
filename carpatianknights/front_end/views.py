@@ -1,10 +1,10 @@
 from django.shortcuts import render
 import datetime
 from .models import Photo
-import git
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from carpatianknights.settings import BASE_DIR
+import subprocess
 
 
 def main_page(request):
@@ -18,12 +18,8 @@ def main_page(request):
 def update(request):
     if request.method == "POST":
 
-        repo = git.Repo(BASE_DIR)
-        origin = repo.remotes.origin
-
-        origin.pull()
+        rc = subprocess.call("{}/git_pull_fetch.sh".format(BASE_DIR))
 
         return HttpResponse("Updated code on server")
     else:
         return HttpResponse("Couldn't update the code on server")
-        # test comment
