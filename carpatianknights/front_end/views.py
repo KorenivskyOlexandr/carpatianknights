@@ -14,7 +14,7 @@ def main_page(request):
     return render(request, 'main.html', {"year": year, "images": images_list})
 
 
-# @csrf_exempt
-# def update(request):
-#     rc = subprocess.call("{}/prod_git_pull_fetch.sh".format(BASE_DIR), shell=True)
-#     return HttpResponse("Updated code on server")
+@csrf_exempt
+def update(request):
+    # rc = subprocess.call("{}/prod_git_pull_fetch.sh".format(BASE_DIR), shell=True)
+    return HttpResponse("Updated code on server")
