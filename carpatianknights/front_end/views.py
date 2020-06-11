@@ -16,12 +16,6 @@ def main_page(request):
 
 @csrf_exempt
 def update(request):
-    if request.method == "POST":
-
-        rc = subprocess.call("{}/prod_git_pull_fetch.sh".format(BASE_DIR), shell=True)
-
-        return HttpResponse("Updated code on server")
-    else:
-        return HttpResponse("Couldn't update the code on server")
-        # test comment йопта йопта thahhahsah
+    rc = subprocess.call("{}/prod_git_pull_fetch.sh".format(BASE_DIR), shell=True)
+    return HttpResponse("Updated code on server")
 
