@@ -19,4 +19,4 @@ def update(request):
     rc = subprocess.call("{}/prod_git_pull_fetch.sh".format(BASE_DIR), shell=True)
     return HttpResponse("Updated code on server")
 
-# test
+# test test test
