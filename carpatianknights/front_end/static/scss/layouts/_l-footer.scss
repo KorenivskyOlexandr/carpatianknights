@@ -1,15 +1,15 @@
 @import "../utilities/colors";
 footer {
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 10vh;
+  height: 100px;
   background-color: $main-bg-color;
   display: flex;
   justify-content: center;
   align-content: center;
   z-index: 10;
-  ::before {
+  &::before {
     content: '';
     position: absolute;
     top: -5vh;

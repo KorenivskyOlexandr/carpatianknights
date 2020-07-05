@@ -11,6 +11,11 @@ main {
   overflow: auto;
   overflow-x: hidden;
   font: 400 16px $font;
+  line-height: 26px;
+}
+
+.container-wrapper {
+  perspective: 400px;
 }
 
 .perspective-container {
@@ -25,15 +30,13 @@ main {
   position: relative;
   backface-visibility: hidden;
   pointer-events: auto;
-  height: 100vh;
-  overflow-x: hidden;
 }
 
 .main-rotate {
   will-change: transform, opacity;
   transform: translate3d(100px, 0, -400px) rotateY(-20deg) rotateZ(360deg);
   transition: transform .7s, background-color .4s;
-  background-color: rgba($green-color-dark, 0.3);
+  background-color: rgba($primary-color-dark, 0.3);
   backface-visibility: hidden;
   pointer-events: none;
   overflow: hidden;
@@ -60,11 +63,35 @@ header {
 h1 {
 
 }
-h2 {
 
+h2 {
+  font-size: 32px;
 }
+
 h3 {
 
+}
+
+.h-title {
+  font-weight: 300;
+  span {
+    font-weight: 700;
+  }
+
+  &::after {
+    content: '';
+    display: flex;
+    width: 50px;
+    height: 3px;
+    background-color: $primary-color-light;
+    margin: 20px auto;
+  }
+
+  &.right {
+    &::after {
+    margin: 20px auto 20px 0;
+  }
+  }
 }
 
 ul {

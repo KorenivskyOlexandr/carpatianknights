@@ -2,17 +2,22 @@
 //Custom vars
 @import "base/custom-bootstrap-vars";
 //Plugins
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins";
-@import "node_modules/bootstrap/scss/reboot";
-@import "node_modules/bootstrap/scss/grid";
-@import "node_modules/bootstrap/scss/utilities/display";
-@import "node_modules/bootstrap/scss/utilities/flex";
-@import "node_modules/bootstrap/scss/utilities/spacing";
-@import "node_modules/bootstrap/scss/utilities/sizing";
-@import "node_modules/bootstrap/scss/utilities/text";
-@import "node_modules/bootstrap/scss/utilities/position";
+
+// Bootstrap 5 alpha
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Bootstrap 4.5.0
+//@import "node_modules/bootstrap/scss/functions";
+//@import "node_modules/bootstrap/scss/variables";
+//@import "node_modules/bootstrap/scss/mixins";
+//@import "node_modules/bootstrap/scss/reboot";
+//@import "node_modules/bootstrap/scss/grid";
+//@import "node_modules/bootstrap/scss/utilities/display";
+//@import "node_modules/bootstrap/scss/utilities/flex";
+//@import "node_modules/bootstrap/scss/utilities/spacing";
+//@import "node_modules/bootstrap/scss/utilities/sizing";
+//@import "node_modules/bootstrap/scss/utilities/text";
+//@import "node_modules/bootstrap/scss/helpers/position";
 
 @import "node_modules/slick-carousel/slick/slick.scss";
 @import "node_modules/slick-carousel/slick/slick-theme.scss";
@@ -31,8 +36,9 @@
 @import "modules/m-hamburger";
 
 //Main page
-@import "layouts/l-about-us";
 @import "layouts/l-header-banner";
+@import "layouts/l-about-us";
+@import "layouts/l-our-partners";
 
 //News
 @import "layouts/l-news-block";

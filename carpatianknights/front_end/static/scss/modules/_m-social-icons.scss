@@ -75,7 +75,7 @@
           height: 0;
           border-left: 28px solid transparent;
           border-right: 28px solid transparent;
-          border-bottom: 40px solid $green-color-dark;
+          border-bottom: 40px solid $primary-color-dark;
           border-radius: 50%;
           opacity: .5;
           transform: scale(0);
@@ -90,7 +90,7 @@
           height: 0;
           border-left: 28px solid transparent;
           border-right: 28px solid transparent;
-          border-top: 40px solid $green-color-dark;
+          border-top: 40px solid $primary-color-dark;
           border-radius: 50%;
           opacity: .5;
           transform: scale(0);
@@ -103,8 +103,8 @@
       .spin-bottom {
         animation: spin-hover-reverse 5s infinite linear;
         .top-cone, .bottom-cone {
-          border-top-color: $green-color-dark;
-          border-bottom-color: $green-color-dark;
+          border-top-color: $primary-color-dark;
+          border-bottom-color: $primary-color-dark;
         }
       }
     }

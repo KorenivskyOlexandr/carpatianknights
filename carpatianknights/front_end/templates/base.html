@@ -11,7 +11,8 @@
     {% endcompress %}
 </head>
 <body>
-<div id="content">
+<div class="container-wrapper">
+    {% include 'shared/_header.html' %}
     <div class="hamburger-container">
         <div class="hamburger">
             <span></span>
@@ -42,8 +43,11 @@
         </ul>
     </nav>
 
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
 
-    {% block content %}{% endblock %}
+    {% include 'shared/_footer.html' %}
 
 </div>
 {% compress js %}
