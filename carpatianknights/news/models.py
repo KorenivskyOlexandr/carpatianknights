@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.text import slugify
 from taggit.managers import TaggableManager
 from django.core.validators import *
 from carpatianknights.front_end.models import Photo
@@ -41,6 +42,11 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('news:post_detail', args=[self.publish.year,
                                                  self.publish.month, self.publish.day, self.slug])
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):
