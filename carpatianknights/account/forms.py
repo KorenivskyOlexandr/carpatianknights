@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
+from carpatianknights.route.models import ActiveRoute
+from datetime import date
 
 
 class UserEditForm(forms.ModelForm):
@@ -16,12 +18,16 @@ class ProfileEditForm(forms.ModelForm):
 
 
 class UserRegistrationForm(forms.ModelForm):
+    phone_number = forms.RegexField(regex=r'\d{9}', label='Phone number', label_suffix=' +380')
+    date_of_birth = forms.DateField(widget=forms.SelectDateWidget(years=range(1970, date.today().year)))
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Repeat password', widget=forms.PasswordInput)
+    accept = forms.BooleanField(label='Згода на обробку персональних данних', required=True)
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'email')
+        fields = ('first_name', 'last_name', 'email')
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -31,5 +37,10 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
+    email = forms.EmailField(label='Your email')
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class TourRegistration(forms.Form):
+    active_tours = forms.ModelChoiceField(
+        queryset=ActiveRoute.objects.filter(status=True, is_full=False))

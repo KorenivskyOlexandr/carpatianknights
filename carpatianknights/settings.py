@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import carpatianknights.constant as constant
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,29 +20,32 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bd5fk4luo2v+ao3*$-w=@15f9(x)4-4q(odl@%t(lp9ibg-&_^'
+SECRET_KEY = constant.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = constant.DEBUG
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = constant.ALLOWED_HOSTS
 
 # Application definition
 
 INSTALLED_APPS = [
-    'carpatianknights.account'
-    'django.contrib.admin',
+    'carpatianknights.account',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'carpatianknights.news',
+    'carpatianknights.front_end',
+    'carpatianknights.route',
+    'django_filters',
     'taggit',
     'sass_processor',
-    'django_scss',
     'compressor',
-    'fontawesome',
+    'compressor_toolkit',
+    'svg',
 
 ]
 
@@ -60,8 +64,7 @@ ROOT_URLCONF = 'carpatianknights.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'carpatianknights/front_end/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,24 +82,7 @@ WSGI_APPLICATION = 'carpatianknights.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'myproject',
-#         'USER': 'admin',
-#         'PASSWORD': 's5a5s5h5a5',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
+DATABASES = constant.DATABASES
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -134,16 +120,15 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'carpatianknights/front_end/static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-# FONTAWESOME_CSS_URL = '//cdn.example.com/fontawesome-min.css'  # absolute url
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
-    'django_scss.finders.SCSSFinder',
     'compressor.finders.CompressorFinder',
 ]
 
@@ -157,9 +142,9 @@ SASS_PROCESSOR_ROOT = STATIC_ROOT
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
 SASS_PRECISION = 8
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+# COMPRESS_PRECOMPILERS = (
+#     ('text/x-scss', 'django_libsass.SassCompiler'),
+# )
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
@@ -168,5 +153,33 @@ LOGOUT_URL = 'logout'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'carpatianknights@gmail.com'
-EMAIL_HOST_PASSWORD = 'carpatian2019'
+EMAIL_HOST_USER = constant.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = constant.EMAIL_HOST_PASSWORD
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'carpatianknights.account.authentication.EmailAuthBackend',
+]
+
+STATICFILES_FINDERS += (
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+    'compressor.filters.template.TemplateFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
+COMPRESS_PRECOMPILERS = (
+    ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
+    ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+COMPRESS_ENABLED = constant.COMPRESS_ENABLED
+COMPRESS_OFFLINE = constant.COMPRESS_OFFLINE
+
+SERVER = constant.SERVER

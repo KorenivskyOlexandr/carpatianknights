@@ -1,23 +1,36 @@
-{% extends "news/base.html" %}
+{% extends "base.html" %}
 {% load news_tags %}
 {% block content %}
-{#    {% if tag %}#}
-{#        <h2>Posts tagged with "{{ tag.name }}"</h2>#}
-{#    {% endif %}#}
     <div class="headers-container"><h2>Новини</h2></div>
     <div>
         <div class="news-container">
+            {% if tag %}
+                <h2>Posts tagged with "{{ tag.name }}"</h2>
+            {% endif %}
             <div class="container">
+                <form action="" method="get">
+                    {{ my_filter.form }}
+                    <button type="submit">Застосувати</button>
+                </form>
                 {% for post in posts %}
                     <div class="news-card-container">
                         <div class="news-card">
                             <p class="title">{{ post.title }}</p>
-                            <span class="news-date">{{ post.publish }}</span>
+                            <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
                             <div class="describe-block">
-                                {{ post.body|markdown }}
+                                {{ post.body|markdown|truncatewords_html:40 }}
                                 <p>{{ post.author }}</p>
                             </div>
-                            <button class="button_news" id="{{ post.id }}">Розгорнути</button>
+                            <button class="button_news" id="{{ post.id }}">
+                                <a href="{{ post.get_absolute_url }}">Детальніше</a>
+                            </button>
+                            Tags:
+                            {% for tag in post.tags.all %}
+                                <a href="{% url 'news:post_list_by_tag' tag.slug %}">
+                                    {{ tag.name }}
+                                </a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 {% endfor %}
@@ -25,7 +38,7 @@
         </div>
     </div>
 
-{#    {% include "pagination.html" with page=posts %}#}
+    {% include "pagination.html" with page=posts %}
     <script>
     </script>
 {% endblock %}

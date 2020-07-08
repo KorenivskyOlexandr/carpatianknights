@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Post, Comment, Photo, PhotoToPost, PhotoToRoutes, Routes, ActiveRoutes
+from .models import Post, Comment, PhotoToPost
+
+
+class PhotoToPostInlane(admin.StackedInline):
+    model = PhotoToPost
 
 
 @admin.register(Post)
@@ -11,6 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     raw_id_fields = ('author',)
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
+    inlines = [PhotoToPostInlane]
 
 
 @admin.register(Comment)
@@ -20,17 +25,3 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'body')
 
 
-admin.site.register(ActiveRoutes)
-admin.site.register(PhotoToPost)
-
-
-class PhotoToRoutesInlane(admin.StackedInline):
-    model = PhotoToRoutes
-
-
-class PhotoToRoutesAdmin(admin.ModelAdmin):
-    inlines = [PhotoToRoutesInlane]
-
-
-admin.site.register(Routes, PhotoToRoutesAdmin)
-admin.site.register(PhotoToRoutes)
