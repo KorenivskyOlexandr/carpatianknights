@@ -9,6 +9,7 @@ __pycache__/
 .idea/
 static/CACHE/
 carpatianknights/front_end/static/CACHE/
+carpatianknights/front_end/static/admin/
 # Distribution / packaging
 .Python
 env/
