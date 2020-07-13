@@ -69,8 +69,7 @@ class ActiveRoute(models.Model):
         super(ActiveRoute, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "%s %s %s %s %s" % (self.routes_id, self.start_day,
-                                   self.stop_day, self.leader, self.status)
+        return self.routes_id.name
 
 
 class PhotoToRoutes(Photo):
