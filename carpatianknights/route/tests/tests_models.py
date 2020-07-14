@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 from datetime import date, timedelta
+from django.core import mail
 
 
 class BaseModelTestCase(TestCase):
@@ -30,6 +31,8 @@ class BaseModelTestCase(TestCase):
         cls.user1 = Profile.objects.create(
             user=User.objects.create(username='user1', email='user1@testemail.com', password='testPassw0rd'),
             phone_number=999999999, date_of_birth=date(1997, 8, 25))
+        cls.tour1 = Tour.objects.create(user_id=cls.user1.user, active_route_id=cls.active_route1, status=False)
+        cls.tour2 = Tour(user_id=cls.user1.user, active_route_id=cls.active_route2, status=False)
 
 
 class TestRouteModels(BaseModelTestCase):
@@ -87,5 +90,30 @@ class TestActiveRouteModel(BaseModelTestCase):
 class TestTourModel(BaseModelTestCase):
 
     def test_create_tour(self):
-        tour1 = Tour.objects.create(user_id=self.user1.user, active_route_id=self.active_route1, status=False)
         self.assertEquals(Tour.objects.count(), 1)
+
+    def test_user_notification(self):
+        self.tour1.status = True
+        self.tour1.save()
+        first_message = mail.outbox[0]
+        self.assertEquals(first_message.subject, 'Карпатські Відчайдухи')
+        self.assertEquals(first_message.from_email, 'carpatianknights@gmail.com')
+        self.assertEquals(first_message.recipients(), [self.user1.user.email])
+
+    def test_admin_notification(self):
+        self.tour2.save()
+        first_message = mail.outbox[0]
+        self.assertEquals(first_message.subject, 'Карпатські Відчайдухи')
+        self.assertEquals(first_message.from_email, 'carpatianknights@gmail.com')
+        self.assertEquals(first_message.recipients(), ['carpatianknights@ukr.net', 's5a5s5h5a5@ukr.net'])
+
+    def test_change_free_place_when_accepting_user(self):
+        self.assertEquals(self.active_route2.free_places, 9)
+        self.tour2.status = True
+        self.tour2.save()
+        self.assertEquals(self.active_route2.free_places, 8)
+
+    def test_change_free_place_when_deleting_user(self):
+        self.assertEquals(self.active_route2.free_places, 8)
+        self.tour2.delete()
+        self.assertEquals(self.active_route2.free_places, 9)

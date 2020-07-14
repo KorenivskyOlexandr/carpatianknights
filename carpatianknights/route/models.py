@@ -87,7 +87,9 @@ class Tour(models.Model):
         unique_together = ("user_id", "active_route_id")
 
     def __str__(self):
-        return "%s %s %s" % (self.user_id, self.active_route_id, self.status)
+        return "Відчайдуха - {}; Похід - {}. Початок - {}. Кінець - {}; Статус - {}".format(
+            self.user_id.get_full_name(), self.active_route_id, self.active_route_id.start_day,
+            self.active_route_id.stop_day, 'Підтверджено на похід' if self.status else 'Потребує підтвердження')
 
 
 @receiver(signals.post_save, sender=Tour)
