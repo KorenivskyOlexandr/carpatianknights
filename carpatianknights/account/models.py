@@ -14,10 +14,7 @@ class Profile(models.Model):
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
 
     def save(self, *args, **kwargs):
-        date_16 = datetime.timedelta(days=5840)
-        if (datetime.date.today() - self.date_of_birth) < date_16:
-            raise ValidationError(
-                "16+, або супровід батьків")
+        self.clean()
         super(Profile, self).save(*args, **kwargs)
 
     def clean(self):
@@ -28,4 +25,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
-
