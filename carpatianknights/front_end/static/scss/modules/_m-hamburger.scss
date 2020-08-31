@@ -1,9 +1,13 @@
 //Hamburger
 .hamburger-container {
   position: fixed;
-  top: 75px;
+  top: 50px;
   left: 50px;
   z-index: 1000;
+  &::after {
+    content: '';
+
+  }
 }
 
 .text-center {
@@ -33,7 +37,7 @@
     transition: .25s ease-in-out;
 
     &:nth-child(1) {
-      top: 0px;
+      top: 0;
     }
 
     &:nth-child(2) {

@@ -12,7 +12,15 @@
 </head>
 <body>
 <div class="container-wrapper">
+
     {% include 'shared/_header.html' %}
+
+    <div class="perspective-container">
+        <main class="main">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
     <div class="hamburger-container">
         <div class="hamburger">
             <span></span>
@@ -43,15 +51,11 @@
         </ul>
     </nav>
 
-    <main class="main">
-        {% block content %}{% endblock %}
-    </main>
-
     {% include 'shared/_footer.html' %}
 
 </div>
 {% compress js %}
-    <script type="module" src="{% static 'script/script.js' %}"></script>
+    <script src="{% static 'script/script.js' %}" type="module"></script>
 {% endcompress %}
 </body>
 </html>

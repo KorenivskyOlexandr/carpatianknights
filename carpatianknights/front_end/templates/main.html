@@ -4,44 +4,10 @@
 {% block content %}
 
 
-            {% include 'homepage/hero-banner.html' %}
-            {% include 'homepage/about-us.html' %}
-            {% include 'homepage/our-partners.html' %}
-
-    <div>
-        <header>
-            <h1>Carpathian Knights</h1>
-            <div class="logo-container">
-
-            </div>
-        </header>
-        <main>
-            <section class="header-banner">
-                <div class="img-container">
-                    <img class="spin" src="{% static 'images/triangle.svg' %}" alt="KV"/>
-                    <img class="static" src="{% static 'images/circle.svg' %}" alt="circle"/>
-                </div>
-                <div class="text-container">
-                    <h2 class="front-text">Відкрий для себе неймовірну подорож</h2>
-                    <h2 class="back-text">Відкрий</h2>
-                </div>
-
-                <div class="arrow">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </section>
-
-            <section class="about-us container">
-                <h2 class="text-center">Про нас</h2>
-                <p class="text-center p-black">Вас вітають Карпатські Відчайдухи! Територія вільних людей, закоханих в
-                    гори. Запрошуємо вас
-                    приєднатись до нашої спільноти та вирушити з нами в незабутню подорож карпатськими стежками у
-                    відповідності з актуальними маршрутами, ознайомитись з якими, а також з історією попередніх походів,
-                    актуальними новинами та планами можна перейшовши у відповідний розділ. Приєднуйтесь до нас у
-                    соцмережах, або ж зв'язуйтесь напряму за телефоном ____ чи на поштову скриньку ____</p>
-            </section>
+    {% include 'homepage/hero-banner.html' %}
+    {% include 'homepage/about-us.html' %}
+    {% include 'homepage/our-partners.html' %}
+    {% include 'homepage/statistic.html' %}
 
 
 {% endblock %}
