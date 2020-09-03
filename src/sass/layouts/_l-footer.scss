@@ -1,0 +1,20 @@
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  height: 100px;
+  background-color: $main-bg-color;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  z-index: 10;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5vh;
+    left: 0;
+    border-top: 5vh solid transparent;
+    border-right: 100vw solid $main-bg-color;
+  }
+}

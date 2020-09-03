@@ -1,0 +1,11 @@
+{
+  "status": "done",
+  "chunks": {
+    "main": [
+      {
+        "name": "main-5469140ad58c1048f695.js",
+        "path": "/home/alex/PycharmProjects/carpatianknights/src/webpack_bundles/main-5469140ad58c1048f695.js"
+      }
+    ]
+  }
+}

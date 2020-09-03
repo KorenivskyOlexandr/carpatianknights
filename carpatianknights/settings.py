@@ -31,21 +31,25 @@ ALLOWED_HOSTS = constant.ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     'carpatianknights.account',
+
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'carpatianknights.news',
     'carpatianknights.front_end',
     'carpatianknights.route',
+
     'django_filters',
     'taggit',
     'sass_processor',
     'compressor',
     'compressor_toolkit',
     'svg',
+    'webpack_loader',
 
 ]
 
@@ -183,3 +187,21 @@ COMPRESS_ENABLED = constant.COMPRESS_ENABLED
 COMPRESS_OFFLINE = constant.COMPRESS_OFFLINE
 
 SERVER = constant.SERVER
+
+# Webpack settings
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'src'),
+)
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'webpack_bundles/', # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'src/webpack_bundles/webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "status": "done",
+  "chunks": {
+    "main": [
+      "main-99ff796e54719cbb54d2.js"
+    ]
+  },
+  "assets": {
+    "main-99ff796e54719cbb54d2.js": {
+      "name": "main-99ff796e54719cbb54d2.js",
+      "path": "/home/alex/PycharmProjects/carpatianknights/src/webpack_bundles/main-99ff796e54719cbb54d2.js"
+    }
+  }
+}

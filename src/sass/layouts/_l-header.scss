@@ -1,0 +1,51 @@
+header {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  background-color: $main-bg-color;
+  transform: translateY(-50px);
+  transition: transform .4s ease-in-out;
+  transition-delay: .4s;
+  z-index: 110;
+
+  h1 {
+    margin: auto;
+    font-size: 28px;
+  }
+
+  &::before, &::after {
+    display: flex;
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+
+  &:before {
+    right: -25px;
+    width: 125px;
+    height: 100%;
+    background-color: $primary-color-light;
+    transform: skew(45deg);
+    z-index: 2;
+  }
+
+  &::after {
+    right: 0;
+    width: 250px;
+    height: 100%;
+    border-top: 50px solid $white;
+    border-left: 50px solid transparent;
+    z-index: 1;
+  }
+}
+
+body.open-menu {
+  header {
+    transform: translateY(0);
+  }
+}
+
+
+
+

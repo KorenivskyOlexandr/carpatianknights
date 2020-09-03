@@ -3,12 +3,13 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {% load compress %}
+{#    {% load compress %}#}
     {% load svg %}
 
-    {% compress css %}
-        <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet">
-    {% endcompress %}
+{#    {% compress css %}#}
+{#        <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet">#}
+{#    {% endcompress %}#}
+<link type="text/css" href="{% static 'css/index.css' %}" rel="stylesheet">
 </head>
 <body>
 <div class="container-wrapper">
@@ -54,8 +55,6 @@
     {% include 'shared/_footer.html' %}
 
 </div>
-{% compress js %}
-    <script src="{% static 'script/script.js' %}" type="module"></script>
-{% endcompress %}
+<script type="text/javascript" src="{% static 'script/script.js' %}"></script>
 </body>
 </html>
