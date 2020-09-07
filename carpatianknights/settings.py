@@ -45,11 +45,11 @@ INSTALLED_APPS = [
 
     'django_filters',
     'taggit',
-    'sass_processor',
-    'compressor',
-    'compressor_toolkit',
-    'svg',
-    'webpack_loader',
+    # 'sass_processor',
+    # 'compressor',
+    # 'compressor_toolkit',
+    # 'svg',
+    # 'webpack_loader',
 
 ]
 
@@ -124,27 +124,27 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'carpatianknights/front_end/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'carpatianknights/front_end/static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
-    'compressor.finders.CompressorFinder',
+    # 'sass_processor.finders.CssFinder',
+    # 'compressor.finders.CompressorFinder',
 ]
 
-SASS_PROCESSOR_ROOT = STATIC_ROOT
+# SASS_PROCESSOR_ROOT = STATIC_ROOT
 
 # SASS_PROCESSOR_INCLUDE_DIRS = [
 #     os.path.join(BASE_DIR, 'extra-styles/scss'),
 #     os.path.join(BASE_DIR, 'node_modules'),
 # ]
 
-SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
-SASS_PRECISION = 8
+# SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
+# SASS_PRECISION = 8
 
 # COMPRESS_PRECOMPILERS = (
 #     ('text/x-scss', 'django_libsass.SassCompiler'),
@@ -165,43 +165,43 @@ AUTHENTICATION_BACKENDS = [
     'carpatianknights.account.authentication.EmailAuthBackend',
 ]
 
-STATICFILES_FINDERS += (
-    'compressor.finders.CompressorFinder',
-)
+# STATICFILES_FINDERS += (
+#     'compressor.finders.CompressorFinder',
+# )
+#
+# COMPRESS_CSS_FILTERS = [
+#     'compressor.filters.css_default.CssAbsoluteFilter',
+#     'compressor.filters.cssmin.CSSMinFilter',
+#     'compressor.filters.template.TemplateFilter'
+# ]
+# COMPRESS_JS_FILTERS = [
+#     'compressor.filters.jsmin.JSMinFilter',
+# ]
+# COMPRESS_PRECOMPILERS = (
+#     ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
+#     ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
+#     ('text/x-scss', 'django_libsass.SassCompiler'),
+# )
 
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-    'compressor.filters.template.TemplateFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
-COMPRESS_PRECOMPILERS = (
-    ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
-    ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-
-COMPRESS_ENABLED = constant.COMPRESS_ENABLED
-COMPRESS_OFFLINE = constant.COMPRESS_OFFLINE
+# COMPRESS_ENABLED = constant.COMPRESS_ENABLED
+# COMPRESS_OFFLINE = constant.COMPRESS_OFFLINE
 
 SERVER = constant.SERVER
 
 # Webpack settings
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'src'),
+    os.path.join(BASE_DIR, 'dist'),
 )
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'webpack_bundles/', # must end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, 'src/webpack_bundles/webpack-stats.json'),
-        'POLL_INTERVAL': 0.1,
-        'TIMEOUT': None,
-        'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
-        'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
-    }
-}
+# WEBPACK_LOADER = {
+#     'DEFAULT': {
+#         'CACHE': not DEBUG,
+#         'BUNDLE_DIR_NAME': 'webpack_bundles/', # must end with slash
+#         'STATS_FILE': os.path.join(BASE_DIR, 'src/webpack_bundles/webpack-stats.json'),
+#         'POLL_INTERVAL': 0.1,
+#         'TIMEOUT': None,
+#         'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+#         'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
+#     }
+# }

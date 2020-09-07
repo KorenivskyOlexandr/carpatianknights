@@ -19,19 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 console.log("hello");
 
-alert('hello');
+alert("hello")
 
 import '../sass/main.scss';
-// const waypoint = new Waypoint({
-//     element: document.getElementById('waypoint1'),
-//     handler: function (direction) {
-//
-//         if (direction === "up") {
-//             counter.reset();
-//         } else {
-//             counter.start();
-//         }
-//
-//     },
-//     offset: '50%'
-// });
+

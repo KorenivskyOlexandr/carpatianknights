@@ -3,13 +3,8 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-{#    {% load compress %}#}
-    {% load svg %}
 
-{#    {% compress css %}#}
-{#        <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet">#}
-{#    {% endcompress %}#}
-<link type="text/css" href="{% static 'css/index.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'index.css' %}" rel="stylesheet">
 </head>
 <body>
 <div class="container-wrapper">
@@ -33,7 +28,6 @@
         <ul class="ul-container">
             <li class="nav-item">
                 <a class="active" href="/">
-                    {% svg 'camp' %}
                 </a>
             </li>
             <li class="nav-item">
@@ -55,6 +49,6 @@
     {% include 'shared/_footer.html' %}
 
 </div>
-<script type="text/javascript" src="{% static 'script/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'script/index.js' %}"></script>
 </body>
 </html>

@@ -1,28 +1,10 @@
-// var path = require('path');
-// var webpack = require('webpack');
-// var BundleTracker = require('webpack-bundle-tracker');
-//
-// module.exports = {
-//     context: __dirname,
-//     entry: './src/js/index',
-//     mode: 'development',
-//     output: {
-//         path: path.resolve('./src/webpack_bundles/'),
-//         filename: "[name]-[hash].js"
-//     },
-//
-//     plugins: [
-//         new BundleTracker({filename: './webpack-stats.json'})
-//     ]
-// }
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/js/index.js',
     mode: 'development',
     output: {
-        filename: '../carpatianknights/front_end/static/script/script.js',
+        filename: './script/index.js',
     },
     module: {
         rules: [
@@ -35,12 +17,12 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: '../fonts/'
+                        outputPath: './fonts/'
                     }
                 }]
             },
@@ -50,7 +32,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: '../images/',
+                        outputPath: './images/',
                         limit: 100000,
                     }
                 }]
@@ -60,7 +42,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '../carpatianknights/front_end/static/css/index.css',
+            filename: './index.css',
         }),
-    ]
+    ],
 };

@@ -4,6 +4,8 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
+    "start": "webpack --config config.js --watch",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,6 +42,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "jquery": "^3.5.1",
     "mini-css-extract-plugin": "^0.11.0",
+    "nodemon": "^2.0.4",
     "popper.js": "^1.16.1",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
@@ -47,7 +50,8 @@
     "turbolinks": "^5.2.0",
     "url-loader": "^4.1.0",
     "waypoints": "^4.0.1",
-    "webpack": "^4.44.1"
+    "webpack": "^4.44.1",
+    "webpack-dev-server": "^3.11.0"
   },
   "babel": {
     "presets": [
