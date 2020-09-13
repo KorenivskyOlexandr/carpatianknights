@@ -1,6 +1,6 @@
-@import "../utilities/colors";
+
 footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100vw;
   height: 100px;
@@ -16,8 +16,5 @@ footer {
     left: 0;
     border-top: 5vh solid transparent;
     border-right: 100vw solid $main-bg-color;
-  }
-  p {
-    color: white;
   }
 }

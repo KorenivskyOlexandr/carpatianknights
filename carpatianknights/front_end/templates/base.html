@@ -3,16 +3,20 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {% load compress %}
-    {% load svg %}
 
-    {% compress css %}
-        <link type="text/x-scss" href="{% static 'scss/main.scss' %}" rel="stylesheet">
-    {% endcompress %}
+<link type="text/css" href="{% static 'index.css' %}" rel="stylesheet">
 </head>
 <body>
 <div class="container-wrapper">
+
     {% include 'shared/_header.html' %}
+
+    <div class="perspective-container">
+        <main class="main">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
     <div class="hamburger-container">
         <div class="hamburger">
             <span></span>
@@ -24,7 +28,6 @@
         <ul class="ul-container">
             <li class="nav-item">
                 <a class="active" href="/">
-                    {% svg 'camp' %}
                 </a>
             </li>
             <li class="nav-item">
@@ -43,15 +46,9 @@
         </ul>
     </nav>
 
-    <main class="main">
-        {% block content %}{% endblock %}
-    </main>
-
     {% include 'shared/_footer.html' %}
 
 </div>
-{% compress js %}
-    <script type="module" src="{% static 'script/script.js' %}"></script>
-{% endcompress %}
+<script type="text/javascript" src="{% static 'script/index.js' %}"></script>
 </body>
 </html>

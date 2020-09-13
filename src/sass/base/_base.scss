@@ -14,7 +14,16 @@ main {
   line-height: 26px;
 }
 
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .container-wrapper {
+
+}
+
+.perspective-container {
   perspective: 400px;
 }
 
@@ -100,4 +109,8 @@ ul {
 }
 li {
   list-style: none;
+}
+
+.active {
+  background: url("../images/camp.svg")
 }

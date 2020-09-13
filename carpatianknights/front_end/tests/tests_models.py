@@ -1,3 +1,4 @@
+import os
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
@@ -9,7 +10,8 @@ class TestModels(TestCase):
     def setUp(self):
         self.test_image = SimpleUploadedFile(name='test_image.jpg',
                                              content=open(
-                                                 settings.STATIC_ROOT + 'images/test_image.jpg', 'rb').read(),
+                                                 os.path.join(settings.BASE_DIR, 'dist/') + 'images/test_image.jpg',
+                                                 'rb').read(),
                                              content_type='image/jpeg')
         self.photo1 = Photo.objects.create(image=self.test_image, title='test1')
 

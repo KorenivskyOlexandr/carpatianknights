@@ -19,8 +19,11 @@
 //@import "node_modules/bootstrap/scss/utilities/text";
 //@import "node_modules/bootstrap/scss/helpers/position";
 
-@import "node_modules/slick-carousel/slick/slick.scss";
-@import "node_modules/slick-carousel/slick/slick-theme.scss";
+//@import "node_modules/slick-carousel/slick/slick.scss";
+:global {
+    @import 'node_modules/slick-carousel/slick/slick';
+}
+//@import "node_modules/slick-carousel/slick/slick-theme.scss";
 @import "utilities/colors";
 @import "base/fonts";
 @import "base/base";

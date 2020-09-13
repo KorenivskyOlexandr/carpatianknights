@@ -31,22 +31,20 @@ ALLOWED_HOSTS = constant.ALLOWED_HOSTS
 
 INSTALLED_APPS = [
     'carpatianknights.account',
+
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'carpatianknights.news',
     'carpatianknights.front_end',
     'carpatianknights.route',
+
     'django_filters',
     'taggit',
-    'sass_processor',
-    'compressor',
-    'compressor_toolkit',
-    'svg',
-
 ]
 
 MIDDLEWARE = [
@@ -120,31 +118,14 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'carpatianknights/front_end/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
-    'compressor.finders.CompressorFinder',
 ]
-
-SASS_PROCESSOR_ROOT = STATIC_ROOT
-
-# SASS_PROCESSOR_INCLUDE_DIRS = [
-#     os.path.join(BASE_DIR, 'extra-styles/scss'),
-#     os.path.join(BASE_DIR, 'node_modules'),
-# ]
-
-SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
-SASS_PRECISION = 8
-
-# COMPRESS_PRECOMPILERS = (
-#     ('text/x-scss', 'django_libsass.SassCompiler'),
-# )
 
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
@@ -161,25 +142,11 @@ AUTHENTICATION_BACKENDS = [
     'carpatianknights.account.authentication.EmailAuthBackend',
 ]
 
-STATICFILES_FINDERS += (
-    'compressor.finders.CompressorFinder',
-)
-
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-    'compressor.filters.template.TemplateFilter'
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
-COMPRESS_PRECOMPILERS = (
-    ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
-    ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
-
-COMPRESS_ENABLED = constant.COMPRESS_ENABLED
-COMPRESS_OFFLINE = constant.COMPRESS_OFFLINE
-
 SERVER = constant.SERVER
+
+# Webpack settings
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'dist'),
+)
+

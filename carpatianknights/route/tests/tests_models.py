@@ -1,3 +1,4 @@
+import os
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from carpatianknights.route.models import Route, ActiveRoute, Tour
@@ -17,7 +18,7 @@ class BaseModelTestCase(TestCase):
         super(BaseModelTestCase, cls).setUpClass()
         cls.test_image = SimpleUploadedFile(name='test_image.jpg',
                                             content=open(
-                                                settings.STATIC_ROOT + 'images/test_image.jpg', 'rb').read(),
+                                                os.path.join(settings.BASE_DIR, 'dist/') + 'images/test_image.jpg', 'rb').read(),
                                             content_type='image/jpeg')
         cls.route1 = Route.objects.create(name='test route1', description='some route1 description',
                                           short_description='some short route1 description', complexity=5,
