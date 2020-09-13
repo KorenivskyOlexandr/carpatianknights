@@ -19,7 +19,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 console.log("hello");
 
-alert("hello")
-
 import '../sass/main.scss';
 

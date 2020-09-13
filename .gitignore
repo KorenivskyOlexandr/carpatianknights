@@ -7,7 +7,7 @@ __pycache__/
 *.so
 .vscode/
 .idea/
-static/CACHE/
+static/
 carpatianknights/front_end/static/CACHE/
 carpatianknights/front_end/static/admin/
 # Distribution / packaging
@@ -122,3 +122,4 @@ npm-debug.log
 
 package-lock.json
 carpatianknights/constant.py
+webpack-stats.json
