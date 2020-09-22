@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class RouteConfig(AppConfig):
-    name = 'route'
+    name = 'carpatianknights.route'
+
+    def ready(self):
+        import carpatianknights.route.signals

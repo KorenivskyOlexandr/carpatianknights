@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'carpatianknights.news',
     'carpatianknights.front_end',
-    'carpatianknights.route',
+    'carpatianknights.route.apps.RouteConfig',
 
     'django_filters',
     'taggit',
@@ -149,4 +149,3 @@ SERVER = constant.SERVER
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'dist'),
 )
-
