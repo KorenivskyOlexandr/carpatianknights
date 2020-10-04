@@ -5,7 +5,8 @@ from django.utils.text import slugify
 from django.urls import reverse
 import datetime
 from django.contrib.auth.models import User
-from carpatianknights.front_end.models import Photo, compress_image
+from carpatianknights.front_end.models import Photo
+from carpatianknights.front_end.services import compress_image
 
 
 class Route(models.Model):
