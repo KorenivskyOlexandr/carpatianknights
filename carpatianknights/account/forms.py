@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
-from carpatianknights.route.models import ActiveRoute
 from datetime import date
+from carpatianknights.route.services import get_active_tour_list
 
 
 class UserEditForm(forms.ModelForm):
@@ -43,4 +43,4 @@ class LoginForm(forms.Form):
 
 class TourRegistration(forms.Form):
     active_tours = forms.ModelChoiceField(
-        queryset=ActiveRoute.objects.filter(status=True, is_full=False))
+        queryset=get_active_tour_list())
