@@ -70,7 +70,7 @@ def sent_user_mail(user, active_route):
                                                   'start_day': active_route.start_day,
                                                   'stop_day': active_route.stop_day,
                                                   'leader': active_route.leader,
-                                                  'url': 'https://carpatianknights.ml'  # ! change url !
+                                                  'url': settings.SERVER  # ! change url !
                                                   })
     plain_message = strip_tags(html_message)
     send_mail(
