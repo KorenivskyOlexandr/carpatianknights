@@ -41,6 +41,6 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class TourRegistration(forms.Form):
+class TourRegistrationForm(forms.Form):
     active_tours = forms.ModelChoiceField(
         queryset=get_active_tour_list())
