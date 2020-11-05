@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('', views.dashboard_view, name='dashboard'),
     path('register/', views.registration_user_view, name='register'),
-    path('edit/', views.edit_view, name='edit'),
+    path('edit/', views.edit_user_profile_view, name='edit'),
 
     # обробка зміни паролю
     path('password_change/',
