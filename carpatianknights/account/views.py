@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm, TourRegistrationForm
+from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .services import register_user, registration_user_to_tour, get_dashboard_context
