@@ -2,7 +2,6 @@ from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
-from .models import Photo
 
 
 def compress_image(image, size=False):
@@ -17,8 +16,3 @@ def compress_image(image, size=False):
     uploaded_image = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % image.name.split('.')[0],
                                           'image/jpeg', sys.getsizeof(output_io_stream), None)
     return uploaded_image
-
-
-def get_gallery_image_list():
-    return Photo.objects.filter(
-        title__startswith="gallery")  # в слайдер попадають стиснені фотографігі які починаються на "gallery"
