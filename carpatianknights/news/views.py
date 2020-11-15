@@ -11,27 +11,7 @@ from .filters import PostFilter
 
 
 def post_list(request, tag_slug=None):
-    object_list = Post.published.all()
-    tag = None
-
-    if tag_slug:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        object_list = object_list.filter(tags__in=[tag])
-
-    paginator = Paginator(object_list, 10)  # По 10 статтей на каждой странице.
-    page = request.GET.get('page')
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        # Если страница не является целым числом, возвращаем первую страницу.
-        posts = paginator.page(1)
-    except EmptyPage:
-        # Если номер страницы больше, чем общее количество страниц, возвращаем последнюю.
-        posts = paginator.page(paginator.num_pages)
-    my_filter = PostFilter(request.GET, queryset=object_list)
-    posts = my_filter.qs
-    context = {'page': page, 'posts': posts, 'tag': tag, 'my_filter': my_filter}
-    return render(request, 'news/post/list.html', context)
+    return render(request, 'news/post/list.html', get_post_list_context(request, tag_slug))
 
 
 def post_detail(request, year, month, day, post):
@@ -57,13 +37,44 @@ def post_detail(request, year, month, day, post):
     similar_posts = Post.published.filter(tags__in=post_tags_ids) \
         .exclude(id=post.id)
     similar_posts = similar_posts.annotate(same_tags=Count('tags')) \
-        .order_by('-same_tags', '-publish')[:4]
+                        .order_by('-same_tags', '-publish')[:4]
     return render(request, 'news/post/detail.html', {'post': post,
                                                      'comments': comments,
                                                      'new_comment': new_comment,
                                                      'comment_form': comment_form,
                                                      'similar_posts': similar_posts})
 
+
+def get_post_list_context(request, tag_slug):
+    if tag_slug:
+        tag = get_tag(tag_slug)
+        object_list = get_post_object_list().filter(tags__in=[tag])
+    else:
+        tag = None
+        object_list = get_post_object_list()
+    page = request.GET.get('page')
+    post_filter = PostFilter(request.GET, queryset=object_list)
+    posts = get_posts_paginator_list(post_filter.qs, page)
+    return {'page': page, 'posts': posts, 'tag': tag, 'post_filter': post_filter}
+
+
+def get_post_object_list():
+    return Post.published.all()
+
+
+def get_tag(tag_slug):
+    return get_object_or_404(Tag, slug=tag_slug)
+
+
+def get_posts_paginator_list(posts_list, page):
+    paginator = Paginator(posts_list, 10)  # По 10 статтей на кажній сторінці.
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return posts
 
 # def post_search(request):
 #     form = SearchForm()
