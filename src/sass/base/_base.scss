@@ -49,6 +49,7 @@ body {
   backface-visibility: hidden;
   pointer-events: none;
   overflow: hidden;
+
   .spin {
     animation-play-state: paused
   }
@@ -83,6 +84,7 @@ h3 {
 
 .h-title {
   font-weight: 300;
+
   span {
     font-weight: 700;
   }
@@ -98,8 +100,8 @@ h3 {
 
   &.right {
     &::after {
-    margin: 20px auto 20px 0;
-  }
+      margin: 20px auto 20px 0;
+    }
   }
 }
 
@@ -107,10 +109,11 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 li {
   list-style: none;
 }
 
 .active {
-  background: url("../images/camp.svg")
+  background: url("../images/camp.svg") no-repeat center;
 }
