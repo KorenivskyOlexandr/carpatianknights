@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load news_tags %}
+{% load widget_tweaks %}
+
 {% block content %}
     <div class="headers-container"><h2>Новини</h2></div>
     <div>
@@ -7,11 +9,24 @@
             {% if tag %}
                 <h2>Posts tagged with "{{ tag.name }}"</h2>
             {% endif %}
-            <div class="container">
-                <form action="" method="get">
-                    {{ post_filter.form }}
-                    <button type="submit">Застосувати</button>
+            <div class="container mb-5 ">
+                <form class="row row-cols-lg-auto g-3 align-items-end">
+                    <div class="col-12">
+                        <label for="{{ post_filter.form.name.id_for_label }}">Заголовок містить</label>
+                        {% render_field post_filter.form.name class+="form-control" %}
+                    </div>
+                    <div class="col-12">
+                        <label for="{{ post_filter.form.start_date.id_for_label }}">Дата більше</label>
+                        {% render_field post_filter.form.start_date class+="form-control" type="date" %}
+                    </div>
+                    <div class="col-12">
+                        <label for="{{ post_filter.form.end_date.id_for_label }}">Дата менше</label>
+                        {% render_field post_filter.form.end_date class+="form-control" type="date"%}
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Застосувати</button>
                 </form>
+            </div>
+            <div class="container">
                 {% for post in posts %}
                     <div class="news-card-container">
                         <div class="news-card">
