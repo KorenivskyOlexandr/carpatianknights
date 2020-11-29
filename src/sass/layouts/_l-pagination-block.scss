@@ -1,0 +1,14 @@
+.pagination-block {
+  background-color: $main-bg-color;
+  opacity: 0.9;
+  padding: 20px 15px;
+  border-radius: 10px;
+  color: white;
+
+  a {
+    color: white;
+    opacity: 1;
+    text-decoration: underline;
+    margin: 5px;
+  }
+}

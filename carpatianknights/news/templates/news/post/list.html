@@ -29,36 +29,39 @@
                         {% render_field post_filter.form.end_date class+="form-control" type="date" %}
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-secondary">Застосувати</button>
+                        <button type="submit" class="btn btn-secondary w-100">Застосувати</button>
                     </div>
 
                 </form>
             </div>
-            <div class="container">
-                {% for post in posts %}
-                    <div class="news-card-container">
-                        <div class="news-card">
-                            <p class="title">{{ post.title|truncatechars:30 }}</p>
-                            <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
-                            <div class="describe-block">
-                                {{ post.body|markdown|truncatewords_html:40 }}
-                                <p>{{ post.author }}</p>
-                            </div>
-                            <button class="btn button_news" id="{{ post.id }}">
-                                <a href="{{ post.get_absolute_url }}">Детальніше</a>
-                            </button>
-                            <div class="news-tag-container">
-                                Tags:
-                                {% for tag in post.tags.all %}
-                                    <a class="news-tag" href="{% url 'news:post_list_by_tag' tag.slug %}">
-                                        {{ tag.name }}
-                                    </a>
-                                    {% if not forloop.last %}{% endif %}
-                                {% endfor %}
+            <div class="container pr-sm-3">
+                <div class="row gy-5 justify-content-center mb-5">
+                    {% for post in posts %}
+                        <div class="col-lg-5 col-md-12 col-sm-12 mx-lg-3">
+                            <div class="news-card">
+                                <p class="title">{{ post.title|truncatechars:35 }}</p>
+                                <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
+                                <div class="describe-block">
+                                    {{ post.body|markdown|truncatewords_html:45 }}
+                                    <p class="text-dark">{{ post.author }}</p>
+                                </div>
+                                <button class="btn button_news" id="{{ post.id }}">
+                                    <a href="{{ post.get_absolute_url }}">Детальніше</a>
+                                </button>
+                                <div class="news-tag-container">
+                                    Tags:
+                                    {% for tag in post.tags.all %}
+                                        <a class="news-tag" href="{% url 'news:post_list_by_tag' tag.slug %}">
+                                            {{ tag.name }}
+                                        </a>
+                                        {% if not forloop.last %}{% endif %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
     </div>
