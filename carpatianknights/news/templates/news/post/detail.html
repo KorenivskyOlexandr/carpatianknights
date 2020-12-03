@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 {% load news_tags %}
-{% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
-    {{ post.body|markdown }}
-    {% for post_photo in post.photos.all %}
-            <img src="{{ post_photo.image.url }}" alt="">
-    {% endfor %}
+    <div class="news-detail-container">
+        <div class="container">
+            <h1 class="text-center ">{{ post.title }}</h1>
+            <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+            {{ post.body|markdown }}
+            <div class="row gy-4 justify-content-center">
+                {% for post_photo in post.photos.all %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <img class="img-fluid" src="{{ post_photo.image.url }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
 {#    {% with comments.count as total_comments %}#}
 {#        <h2>{{ total_comments }} comment{{ total_comments|pluralize }}</h2>#}
 {#    {% endwith %}#}
@@ -33,4 +45,3 @@
 {#        </form>#}
 {#    {% endif %}#}
 {#    {{ similar_posts.as_p }}#}
-{% endblock %}
