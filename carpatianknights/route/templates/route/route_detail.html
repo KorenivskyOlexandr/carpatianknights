@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% load news_tags %}
-{% block title %}{{ route.name }}{% endblock %}
 {% block content %}
-    <h1>{{ route.name }}</h1>
-    <p>Сладність: {{ route.complexity }}</p>
-    <div class="active_tour_description">{{ route.description|markdown }}</div>
-    <div class="active_tour_image">
-        {% for route_image in route.photos.all %}
-            <img src="{{ route_image.image.url }}" alt="">
-        {% endfor %}
+    <div class="route-detail-container">
+        <div class="container">
+            <h1 class="text-center ">{{ route.name }}</h1>
+            <p>Сладність: {{ route.complexity }}</p>
+            {{ route.description|markdown }}
+            <div class="row gy-4 justify-content-center">
+                {% for route_image in route.photos.all %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <img class="img-fluid" src="{{ route_image.image.url }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-
 
 {% endblock %}
