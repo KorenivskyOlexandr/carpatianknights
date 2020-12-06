@@ -7,7 +7,7 @@ from .services import register_user, registration_user_to_tour, get_dashboard_co
 
 def registration_user_view(request):
     if request.method == 'POST':
-        register_user(request)
+        return register_user(request)
     else:
         context = {
             'user_form': UserRegistrationForm(),

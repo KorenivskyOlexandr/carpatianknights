@@ -1,7 +1,8 @@
 {% extends "account_base.html" %}
 {% block title %}Welcome{% endblock %}
 {% block account_content %}
-    <h1>Welcome {{ new_user.first_name }}!</h1>
-    <p>Your account has been successfully created.
-        Now you can <a href="{% url "login" %}">log in</a>.</p>
+    <div class="container mt-5 pt-5"></div>
+    <h1 class="text-center text-white">Вітаємо {{ new_user.first_name }}!</h1>
+    <p class="text-center text-white fs-2">Ваш аккаунт було успішно створено тепер ви можете
+        <a class="text-white fs-2" href="{% url "login" %}">Увійти до особистого кабінету</a>.</p>
 {% endblock %}
