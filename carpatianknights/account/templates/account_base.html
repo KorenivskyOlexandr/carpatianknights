@@ -1,36 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
-{% comment %} <!DOCTYPE html>
-<html>
-<head>
-    <title>{% block title %}{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
-</head>
-<body> {% endcomment %}
 {% block content %}
     <div class="headers-container"><h2>{% block title %}{% endblock %}</h2>
-        {% comment %} {% if request.user.is_authenticated %}
-            <ul class="menu">
-                <li {% if section == "dashboard" %} class="selected"{% endif %}>
-                    <a href="{% url "dashboard" %}">My dashboard</a>
-                </li>
-            </ul>
-        {% endif %}
-        <span class="user">
-                {% if request.user.is_authenticated %}
-                    Hello {{ request.user.first_name }},
-                    <a href="{% url "logout" %}">Logout</a>
-                {% else %}
-                    <a href="{% url "login" %}">Log-in</a>
-                {% endif %}
-            </span> {% endcomment %}
     </div>
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
                 <li class="{{ message.tags }}">
                     {{ message|safe }}
-                    {% comment %} <a href="#" class="close">x</a> {% endcomment %}
                 </li>
             {% endfor %}
         </ul>
@@ -40,5 +17,3 @@
         {% endblock %}
     </div>
 {% endblock %}
-{% comment %} </body>
-</html> {% endcomment %}

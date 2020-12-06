@@ -1,37 +1,61 @@
 {% extends "account_base.html" %}
+{% load widget_tweaks %}
 
 {% block title %}Особистий кабінет{% endblock %}
 
 {% block account_content %}
-    <h1>Log-in</h1>
-    {% if form.errors %}
-        <p>Your username and password didn't match.Please try again.</p>
-    {% else %}
-        <p>Please, use the following form to log-in. If you don't have an account <a href="{% url "register" %}">register
-            here</a></p>
-            <p>Your email is username</p>
-    {% endif %}
-    <div class="login-form">
-        <form action="{% url 'login' %}" method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}"/>
-            <p><input type="submit" value="Log-in"></p>
-        </form>
-        <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <form action="{% url 'login' %}" method="post" class="col-lg-6 col-md-8 col-sm-12 login-form">
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Email address</label>
+                    {% render_field form.username type="email" class+="form-control" aria-describedby="emailHelp" %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+                    {% render_field form.password class+="form-control" %}
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </div>
+                <button type="submit" class="btn btn-secondary w-100">Увійти</button>
+                <p class="text-center mt-2"><a href="{% url "password_reset" %}">Забули пароль?</a></p>
+                <p class="text-center mt-2">Якщо не маєте аккаунта, стовріть його за цим посиланням: <a
+                        href="{% url "register" %}">Зареєструватися</a></p>
+
+            </form>
+
+        </div>
     </div>
-    <div class="social">
-        <ul>
-{#            <li class="facebook"><a href="{% url "social:begin" "facebook" %}">#}
-{#                Signin with Facebook</a></li>#}
-{#            <li class="twitter">#}
-{#                <a href="{% url "social:begin" "twitter" %}">Login with Twitter</a>#}
-{#            </li>#}
-            {% comment %} <li class="google">
-                <a href="{% url "social:begin" "google-oauth2" %}">
-                    Login with Google
-                </a>
-            </li> {% endcomment %}
-        </ul>
-    </div>
+
+    {#        <h1>Log-in</h1>#}
+    {#        {% if form.errors %}#}
+    {#            <p>Your username and password didn't match.Please try again.</p>#}
+    {#        {% else %}#}
+    {#            <p>Please, use the following form to log-in. If you don't have an account <a href="{% url "register" %}">register#}
+    {#                here</a></p>#}
+    {#            <p>Your email is username</p>#}
+    {#        {% endif %}#}
+    {#        <div class="login-form">#}
+    {#            <form action="{% url 'login' %}" method="post">#}
+    {#                {{ form.as_p }}#}
+    {#                {% csrf_token %}#}
+    {#                <input type="hidden" name="next" value="{{ next }}"/>#}
+    {#                <p><input type="submit" value="Log-in"></p>#}
+    {#            </form>#}
+    {#            <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>#}
+    {#        </div>#}
+    {#        <div class="social">#}
+    {#            <ul>#}
+    {#            <li class="facebook"><a href="{% url "social:begin" "facebook" %}">#}
+    {#                Signin with Facebook</a></li>#}
+    {#            <li class="twitter">#}
+    {#                <a href="{% url "social:begin" "twitter" %}">Login with Twitter</a>#}
+    {#            </li>#}
+    {#                {% comment %} <li class="google">#}
+    {#                <a href="{% url "social:begin" "google-oauth2" %}">#}
+    {#                    Login with Google#}
+    {#                </a>#}
+    {#            </li> {% endcomment %}#}
+    {#            </ul>#}
+
 {% endblock %}
