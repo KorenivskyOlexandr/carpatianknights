@@ -11,11 +11,11 @@
                         <h3>{{ route.name }}</h3>
                         <p>Сладність: {{ route.complexity }}</p>
                         <div class="active_tour_description">{{ route.short_description|markdown }}</div>
-                        <div class="active_tour_image">
-                            {% for route_image in route.photos.all %}
-                                <img src="{{ route_image.image.url }}" alt="">
-                            {% endfor %}
-                        </div>
+{#                        <div class="active_tour_image">#}
+{#                            {% for route_image in route.photos.all %}#}
+{#                                <img src="{{ route_image.image.url }}" alt="">#}
+{#                            {% endfor %}#}
+{#                        </div>#}
                     </div>
                     <div class="col-12">
                         <button class="button_register btn btn-secondary">

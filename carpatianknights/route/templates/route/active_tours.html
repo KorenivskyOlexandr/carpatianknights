@@ -2,32 +2,33 @@
 {% load active_tour_tags %}
 {% load static %}
 {% block content %}
-    <div class="headers-container"><h2>Активні походи</h2></div>
+    <div class="headers-container"><h2>Актуальні походи</h2></div>
     <div class="active-tours-container">
-        {% for active_tour in active_tour_list %}
-            <div class="tour-card">
-                <h3>{{ active_tour.routes_id.name }}</h3>
-                <p>Глава походу: {{ active_tour.leader }}</p>
-                <span>Дата початку: {{ active_tour.start_day|date:"d-m-Y" }} </span>
-                <span>Дата закінчення: {{ active_tour.stop_day|date:"d-m-Y" }} </span>
-                <p>Сладність: {{ active_tour.routes_id.complexity }}</p>
-                <p>Кількість вільних місць: {{ active_tour.free_places }}</p>
-                {% comment %} <progress value="{{ active_tour.routes_id.complexity }}"></progres> {% endcomment %}
-                <div class="active_tour_description">{{ active_tour.routes_id.description|markdown|truncatewords_html:80 }}</div>
-{#                <div class="active_tour_image">#}
-{#                    {% for tour_image in active_tour.routes_id.photos.all %}#}
-{#                        <img src="{{ tour_image.image.url }}" alt="">#}
-{#                    {% endfor %}#}
-{#                </div>#}
-                <button class="button_active_tour">
-                    <a class="href_detail" href="{{ active_tour.routes_id.get_absolute_url }}">Детальніше</a>
-                </button>
-                <button class="button_register">
-                    <a class="href_register" href="/account">Особистий кабінет</a>
-                </button>
-            </div>
-
-        {% endfor %}
+        <div class="container">
+            {% for active_tour in active_tour_list %}
+                <div class="tour-card row">
+                    <div class="col-12">
+                        <h3>{{ active_tour.routes_id.name }}</h3>
+                        <p>Глава походу: {{ active_tour.leader }}</p>
+                        <span>Дата початку: {{ active_tour.start_day|date:"d-m-Y" }} </span>
+                        <span>Дата закінчення: {{ active_tour.stop_day|date:"d-m-Y" }} </span>
+                        <p>Сладність: {{ active_tour.routes_id.complexity }}</p>
+                        <p>Кількість вільних місць: {{ active_tour.free_places }}</p>
+                        <div class="active_tour_description">{{ active_tour.routes_id.description|markdown|truncatewords_html:80 }}</div>
+                        <p class="text-center">Зареєструватися в похід можна в особистому кабінеті</p>
+                        <div class="col-12 pt-3">
+                            <button class="button_active_tour btn btn-secondary">
+                                <a class="href_detail"
+                                   href="{{ active_tour.routes_id.get_absolute_url }}">Детальніше про маршрут</a>
+                            </button>
+                            <button class="button_register btn btn-secondary">
+                                <a class="href_register" href="/account">В особистий кабінет</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
