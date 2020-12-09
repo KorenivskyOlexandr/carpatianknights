@@ -4,13 +4,15 @@
     <div class="headers-container"><h2>{% block title %}{% endblock %}</h2>
     </div>
     {% if messages %}
-        <ul class="messages">
+        <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
             {% for message in messages %}
-                <li class="{{ message.tags }}">
+                <div class="{{ message.tags }} text-center fs-4">
                     {{ message|safe }}
-                </li>
+                </div>
             {% endfor %}
-        </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
     {% endif %}
     <div id="account_content">
         {% block account_content %}
