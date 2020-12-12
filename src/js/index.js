@@ -1,6 +1,6 @@
 // Plugins
 import {hamburgerToggle} from "./custom/toggle-menu";
-import { CountUp } from 'countup.js/dist/countUp';
+import {CountUp} from 'countup.js/dist/countUp';
 import "bootstrap/dist/js/bootstrap.bundle";
 import "waypoints/lib/noframework.waypoints"
 
@@ -17,4 +17,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 import '../sass/main.scss';
-

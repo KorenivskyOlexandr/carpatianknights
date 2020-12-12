@@ -26,17 +26,18 @@ def register_user(request):
             new_profile.save()
         except ValidationError:
             messages.error(request, "Обмеження по віку 16+, або супровід батьків")
-            return render(request, 'account/register.html', {'user_form': UserRegistrationForm()})
         except IntegrityError:
             messages.error(request, "Корисутвач з таким номером телефону вже стоврений")
-            return render(request, 'account/register.html', {'user_form': UserRegistrationForm()})
 
         return render(request,
                       'account/register_done.html',
                       {'new_user': new_user})
+
     if 'email' in user_form.errors:
         messages.error(request, "Користувач з таким email вже створений")
-        return render(request, 'account/register.html', {'user_form': UserRegistrationForm()})
+    if 'phone_number' in user_form.errors:
+        messages.error(request, "Номер телефону має складати 9 цифр")
+    return render(request, 'account/register.html', {'user_form': UserRegistrationForm()})
 
 
 def registration_user_to_tour(request):

@@ -9,7 +9,7 @@
                 <h2 class="text-white text-center">Реєстрація</h2>
                 <div class="mb-3">
                     <label for="{{ user_form.first_name.id_for_label }}">Ім'я</label>
-                    {% render_field user_form.first_name class+="form-control"|attr:"required:True"%}
+                    {% render_field user_form.first_name class+="form-control"%}
                 </div>
                 <div class="mb-3">
                     <label for="{{ user_form.last_name.id_for_label }}">Прізвище</label>
@@ -22,7 +22,7 @@
                 <label for="{{ user_form.phone_number.id_for_label }}" class="form-label">Номер телефону</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">+380</span>
-                    {% render_field user_form.phone_number type="number" class+="form-control" %}
+                    {% render_field user_form.phone_number type="number" class+="form-control" minlength="9" maxlength="9" pattern="[0-9]{9}"%}
                 </div>
                 <label for="{{ user_form.date_of_birth.id_for_label }}" class="form-label">Дата народження</label>
                 <div class="input-group mb-3">
