@@ -1,0 +1,20 @@
+.dashboard-background {
+  background-color: rgba(52, 58, 64, 0.76);
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  margin-left: auto;
+
+  button {
+    //text-align: justify;
+    //justify-content: space-between;
+    //text-align-last: justify;
+
+    a {
+      color: white;
+      text-decoration: none;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
