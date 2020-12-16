@@ -1,14 +1,44 @@
 {% extends "account_base.html" %}
+{% load widget_tweaks %}
 
-{% block title %}Edit your account{% endblock %}
+{% block title %}Редагування профілю{% endblock %}
 
 {% block account_content %}
-    <h1>Edit your account</h1>
-    <p>You can edit your account using the following form:</p>
-    <form action="." method="post" enctype="multipart/form-data">
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Save changes"></p>
-    </form>
+    <div class="container">
+        <div class="row justify-content-center my-5">
+            <form action="." class="col-lg-6 col-md-10 col-sm-12 login-form" method="post"
+                  enctype="multipart/form-data">
+                <h2 class="text-center text-white">Заповніть форму для зміни профілю</h2>
+                <div class="mb-3">
+                    <label for="{{ user_form.first_name.id_for_label }}">Ім'я</label>
+                    {% render_field user_form.first_name class+="form-control" %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ user_form.last_name.id_for_label }}">Прізвище</label>
+                    {% render_field user_form.last_name class+="form-control" %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ user_form.email.id_for_label }}" class="form-label">Адреса електронної пошти</label>
+                    {% render_field user_form.email tupe="email" class+="form-control" %}
+                </div>
+                <label for="{{ profile_form.phone_number.id_for_label }}" class="form-label">Номер телефону</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">+380</span>
+                    {% render_field profile_form.phone_number type="number" class+="form-control" minlength="9" maxlength="9" pattern="[0-9]{9}" %}
+                </div>
+                <label for="{{ profile_form.date_of_birth.id_for_label }}" class="form-label">Дата народження</label>
+                <div class="input-group mb-3">
+                    {% render_field profile_form.date_of_birth tupe="date" class+="form-control" %}
+                </div>
+                <label for="{{ profile_form.photo.id_for_label }}" class="form-label">Аватар</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="photo" accept="image/*"
+                           id="id_{{ profile_form.photo.name }}">
+                </div>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary w-100 mb-3">Зберегти зміни</button>
+                <a href="/account" class="btn btn-secondary w-100 mb-3">Назад в особистий кабінет</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}
