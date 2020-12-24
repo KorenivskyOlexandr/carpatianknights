@@ -17,7 +17,8 @@
     {% if form.errors %}
         <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
             <div class="text-center fs-4">
-                <p>Неправельний логін або пароль</p>
+{#                <p>Неправельний логін або пароль</p>#}
+                {{ form.errors }}
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeALert(this)"></button>
         </div>

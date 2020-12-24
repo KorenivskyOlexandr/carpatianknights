@@ -29,7 +29,7 @@ def notify_admin(instance, created, **kwargs):
         send_mail(
             subject='Карпатські Відчайдухи',
             message=plain_message,
-            from_email='carpatianknights@gmail.com',
+            from_email=settings.EMAIL_HOST_USER,
             recipient_list=['carpatianknights@ukr.net', 's5a5s5h5a5@ukr.net'],
             html_message=html_message,
             fail_silently=False,
@@ -76,7 +76,7 @@ def sent_user_mail(user, active_route):
     send_mail(
         subject='Карпатські Відчайдухи',
         message=plain_message,
-        from_email='carpatianknights@gmail.com',
+        from_email=settings.EMAIL_HOST_USER,
         recipient_list=[user.email],
         html_message=html_message,
         fail_silently=False,

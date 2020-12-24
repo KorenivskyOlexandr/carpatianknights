@@ -54,23 +54,12 @@
                 </div>
                 <div class="tour_registration mt-3">
                     <h3 class="text-center">Записатися в похід</h3>
-                    <div class="registration-form">
+                    <form action="" method="post" class="registration-form">
                         <label for="{{ tour_registration_form.id_for_label }}">Активні маршрути:</label>
-                        <select class="form-select" aria-label="Default select example">
-                            {% for active_tour in tour_registration_form %}
-                                {% for tour in active_tour %}
-                                    {% if forloop.first %}
-                                        <option selected>Оберіть маршрут</option>
-                                    {% else %}
-                                        {{ tour }}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-                        </select>
-
+                        {% render_field tour_registration_form.active_tours class+="form-select" %}
                         {% csrf_token %}
                         <button type="submit" class="btn btn-secondary w-100 mt-2">Записатися</button>
-                    </div>
+                    </form>
                 </div>
                 <div class="profile-btn mt-2">
                     <a class="btn btn-secondary href_register w-100 my-2" href="{% url "edit" %}">Редагувати профіль</a>

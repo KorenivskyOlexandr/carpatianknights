@@ -51,6 +51,7 @@ def registration_user_to_tour(request):
                 request, 'Заявку подано успішно подано, глава походу зв\'яжеться з вами')
         except IntegrityError:
             messages.error(request, 'Ви вже подавали заявку на цей тур')
+    # return messages
 
 
 def get_dashboard_context(user):
