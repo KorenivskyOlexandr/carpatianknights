@@ -4,7 +4,6 @@ import {CountUp} from 'countup.js/dist/countUp';
 import "bootstrap/dist/js/bootstrap.bundle";
 import "waypoints/lib/noframework.waypoints"
 
-
 document.addEventListener("DOMContentLoaded", () => {
     hamburgerToggle();
     let counter = new CountUp("counter1", 0, 15000, 0, 5, {

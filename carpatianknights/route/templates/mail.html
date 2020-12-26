@@ -11,39 +11,39 @@
 			margin: 0;
 			
 		}
-		.kv-emeil-center {
+		.kv-email-center {
 			margin: auto;
 			text-align: center;
 			max-width: 680px;
 			background-color: #e0e0e0;
 			color: #404040;
 		}
-		.kv-emeil-header h1 {
+		.kv-email-header h1 {
 			color: #004d4d;
     		letter-spacing: 2px;
     		font-family: monospace;
     		clear: both;
     		padding-top: 7px;
 		}
-		.kv-emeil-main {
+		.kv-email-main {
 			padding-top: 7px;
 			padding-left: 100px;
 			padding-right: 100px;
 		}
-		.kv-emeil-main p {
+		.kv-email-main p {
 			text-align: left;
 			padding-top: 13px;
 		}
-		.kv-emeil-main h3 {
+		.kv-email-main h3 {
 			padding-top: 13px;
 		}
-		.kv-emeil-social .kv-emeil-icons img {
+		.kv-email-social .kv-email-icons img {
 			padding-top: 13px;
     		width: 35px;
     		height: 35px;
     		padding-left: 7px; 
     	}
-		.kv-emeil-icons {
+		.kv-email-icons {
 			width: 200px;
 			text-align: center;
 			margin: auto;
@@ -53,20 +53,20 @@
     		border-bottom: 100px solid transparent;
 
 		}
-		.kv-emeil-futer{
+		.kv-email-futer{
 			border-right: 680px solid #004d4d;
     		border-top: 100px solid transparent;
 		}
 	</style>
 </head>
 <body>
-	<div class="kv-emeil-center">
-		<div class="kv-emeil-header">
+	<div class="kv-email-center">
+		<div class="kv-email-header">
 			<div class="kv-top-line"></div>
 			<h1>Carpathian Knights</h1>
 			<h3>Новий похід - Нові звершення!</h3>
 		</div>
-		<div class="kv-emeil-main">
+		<div class="kv-email-main">
 			<h2>Вітаємо! Вас прийнято в похід</h2>
 			<p>Маршрут - {{route}}</p>
 			<p>Дата початку - {{start_day|date:"d-m-Y"}}</p>
@@ -74,18 +74,18 @@
 			<p>Гід - {{leader}}</p>
 			<p>Перед початком походу рекомендуємо ознайомитися з: <br>-базовим інструктажем {мейбі ссилка}  <br>-правилами походу {мейбі ше одна силка}</p>
 			<h3>Приєднуйтесь до нас в соціальних мережах, якщо ви ще цього не зробили!</h3>
-			<div class="kv-emeil-social">
-				<div class="kv-emeil-icons">
-					<a href="https://t.me/carpatianknights"><img src="{{url}}/static/media/telegram.7b208baf.svg" alt="Telegram"></a>
-					<a href="https://www.facebook.com/carpatianknights/?ref=bookmarks"><img src="{{url}}/static/media/facebook.7d7f0415.svg" alt="Facebook"></a>
-					<a href="https://www.instagram.com/explore/tags/carpatianknights/"><img src="{{url}}/static/media/instagram.41a02952.svg" alt="Instagram"></a>
-					<a href="https://www.youtube.com/channel/UCpmufND9GFuah39-a2QkDZQ"><img src="{{url}}/static/media/youtube.94a8f254.svg" alt="Telegram"></a>
+			<div class="kv-email-social">
+				<div class="kv-email-icons">
+					<a href="https://t.me/carpatianknights"><img src="{{url}}/static/images/telegram.svg" alt="Telegram"></a>
+					<a href="https://www.facebook.com/carpatianknights/?ref=bookmarks"><img src="{{url}}/static/images/facebook.svg" alt="Facebook"></a>
+					<a href="https://www.instagram.com/explore/tags/carpatianknights/"><img src="{{url}}/static/images/instagram.svg" alt="Instagram"></a>
+					<a href="https://www.youtube.com/channel/UCpmufND9GFuah39-a2QkDZQ"><img src="{{url}}/static/images/youtube.svg" alt="YouTube"></a>
 				</div>
 			</div>
 			<h3>Виникли запитання?</h3>
 			<p>телефон - +380982584602 <br>email - carpatianknights@gmail.com</p>
 		</div>
-		<div class="kv-emeil-futer"></div>
+		<div class="kv-email-futer"></div>
 	</div>
 </body>
 </html>
