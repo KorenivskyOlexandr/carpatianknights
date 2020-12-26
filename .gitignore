@@ -123,3 +123,4 @@ npm-debug.log
 package-lock.json
 carpatianknights/constant.py
 webpack-stats.json
+db.json
