@@ -64,7 +64,7 @@
     }
 
     .describe-block {
-      height: 250px;
+      height: 270px;
       overflow: hidden;
     }
 
@@ -131,5 +131,30 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .news-container {
+    .news-card {
+      height: auto;
+
+      .news-date {
+        position: absolute;
+        top: -25px;
+        right: +20px;
+        color: white;
+        padding: 15px 30px;
+      }
+
+      button {
+        margin-top: 10px;
+        position: relative;
+        width: auto;
+        height: 40px;
+        bottom: auto;
+        left: auto;
+      }
+    }
   }
 }

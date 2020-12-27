@@ -16,14 +16,14 @@
                         <p>Кількість вільних місць: {{ active_tour.free_places }}</p>
                         <div class="active_tour_description">{{ active_tour.routes_id.description|markdown|truncatewords_html:80 }}</div>
                         <p class="text-center">Зареєструватися в похід можна в особистому кабінеті</p>
-                        <div class="col-12 pt-3">
-                            <button class="button_active_tour btn btn-secondary">
-                                <a class="href_detail"
+                        <div class="row justify-content-lg-between justify-content-sm-center">
+                            <div class="col-lg-4 col-sm-10">
+                                <a class="href_detail btn btn-secondary w-100 mb-3"
                                    href="{{ active_tour.routes_id.get_absolute_url }}">Детальніше про маршрут</a>
-                            </button>
-                            <button class="button_register btn btn-secondary">
-                                <a class="href_register" href="/account">В особистий кабінет</a>
-                            </button>
+                            </div>
+                            <div class="col-lg-4 col-sm-10">
+                                <a class="href_register btn btn-secondary w-100" href="/account">В особистий кабінет</a>
+                            </div>
                         </div>
                     </div>
                 </div>
