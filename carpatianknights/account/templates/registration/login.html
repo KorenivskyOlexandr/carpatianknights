@@ -5,7 +5,7 @@
 
 {% block account_content %}
     <div class="container">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center my-5">
             <form action="{% url 'login' %}" method="post" class="col-lg-6 col-md-10 col-sm-12 login-form">
                 <h2 class="text-center text-white">Вхід до особистого кабінету</h2>
                 <div class="mb-3">
@@ -20,7 +20,7 @@
                 </div>
                 <button type="submit" class="btn btn-secondary w-100">Увійти</button>
                 <p class="text-center mt-2"><a href="{% url "password_reset" %}">Забули пароль?</a></p>
-                <p class="text-center mt-2">Якщо не маєте аккаунта, стовріть його за цим посиланням: <a
+                <p class="text-center mt-2">Якщо не маєте аккаунта, створіть його за цим посиланням: <a
                         href="{% url "register" %}">Зареєструватися</a></p>
 
             </form>
