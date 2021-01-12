@@ -28,7 +28,7 @@
     }
     .spin {
       width: 350px;
-      height: 350px;
+      height: 390px;
       padding-bottom: 90px;
       overflow: visible;
       animation-name: spin;
@@ -64,7 +64,7 @@
 
     .back-text {
       color: #004d4d;
-      top: -140px;
+      top: -60px;
       height: 125px;
       font-size: 125px;
       font-weight: 900;
@@ -73,11 +73,11 @@
       opacity: 0.6;
       @media screen and (max-width: 768px){
         font-size: 90px;
-        top: -90px;
+        top: -40px;
       }
-      @media screen and (max-width: 768px){
-        font-size: 52px;
-        top: -50px;
+      @media screen and (max-width: 575px){
+        font-size: 75px;
+        top: -30px;
       }
     }
   }
