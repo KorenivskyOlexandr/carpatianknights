@@ -2,13 +2,20 @@
 {% load news_tags %}
 {% load widget_tweaks %}
 
+{% block title %}
+    Новини
+{% endblock %}
+
 {% block content %}
     <div class="headers-container"><h2>Новини</h2></div>
     <div>
         <div class="news-container">
             <div class="container mb-5">
                 {% if tag %}
-                    <h2>Новини з тегом - "{{ tag.name }}"</h2>
+                    <div class="row">
+                        <h2 class="col-12 text-center mb-2">Новини з тегом - "{{ tag.name }}"</h2>
+                        <h3 class="col-12 text-center"><a class="text-white " href="/news">Скинути</a></h3>
+                    </div>
                 {% endif %}
             </div>
             <div class="container mb-5">
@@ -65,6 +72,4 @@
     </div>
 
     {% include "pagination.html" with page=posts %}
-    <script>
-    </script>
 {% endblock %}

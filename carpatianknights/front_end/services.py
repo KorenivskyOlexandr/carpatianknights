@@ -6,6 +6,8 @@ import sys
 
 def compress_image(image, size=False):
     image_temp = Image.open(image)
+    if image_temp.mode in ("RGBA", "P"):
+        image_temp = image_temp.convert("RGB")
     output_io_stream = BytesIO()
     if size:
         image_temp_resized = image_temp.resize(size)

@@ -1,0 +1,29 @@
+.arrow-left-container {
+  position: fixed;
+  top: 90px;
+  left: 50px;
+  z-index: 1000;
+  cursor: pointer;
+
+  a {
+    position: relative;
+    z-index: 1000;
+
+  }
+}
+
+.arrow-left {
+  width: 30px;
+  height: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .arrow-left-container {
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    z-index: 1000;
+    cursor: pointer;
+
+  }
+}

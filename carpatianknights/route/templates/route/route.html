@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load active_tour_tags %}
 {% load static %}
+
+{% block title %}
+    Наші маршрути
+{% endblock %}
+
 {% block content %}
+
     <div class="headers-container"><h2>Наші маршрути</h2></div>
     <div class="active-tours-container">
         <div class="container">
@@ -19,10 +25,8 @@
                         </div>
                     </div>
                 </div>
-
             {% endfor %}
         </div>
-
     </div>
 
 {% endblock %}

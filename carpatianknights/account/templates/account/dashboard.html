@@ -48,7 +48,7 @@
                             {% static "images/avatar-1577909_960_720.webp" %}{% endif %}">
                         <p class="text-center">{{ user.first_name }} {{ user.last_name }}</p>
                         <p>Успішних маршрутів: {{ user_history_tour.count }}</p>
-                        <p>User rank: {{ user.profile.user_rang }}</p>
+                        <p>Ранг користувача: {{ user.profile.user_rang }}</p>
                         <p>На сайті з {{ user.profile.date_of_registration|date:"d.m.Y" }}</p>
                     </div>
                 </div>

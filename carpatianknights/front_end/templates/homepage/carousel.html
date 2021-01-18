@@ -9,11 +9,11 @@
                         {% for image in images %}
                             {% if forloop.first %}
                                 <div class="carousel-item active ">
-                                    <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ forloop.counter }}">
+                                    <img src="{{ image.image.url }}" class="d-block " alt="{{ forloop.counter }}">
                                 </div>
                             {% else %}
                                 <div class="carousel-item">
-                                    <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ forloop.counter }}">
+                                    <img src="{{ image.image.url }}" class="d-block " alt="{{ forloop.counter }}">
                                 </div>
                             {% endif %}
                         {% endfor %}
@@ -29,5 +29,5 @@
                 </div>
             </div>
         </div>
-
+    </div>
 </section>

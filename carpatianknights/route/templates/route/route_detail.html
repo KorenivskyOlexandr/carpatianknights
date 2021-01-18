@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load news_tags %}
+
+{% block title %}
+    {{ route.name }}
+{% endblock %}
+
 {% block content %}
     <div class="route-detail-container">
         <div class="container">
@@ -16,4 +21,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block include_content %}
+    {% include 'shared/_back_arrow.html' %}
 {% endblock %}

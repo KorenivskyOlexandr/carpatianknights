@@ -1,10 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
 {% load news_tags %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
 {% block content %}
+
     <div class="news-detail-container">
         <div class="container">
             <h1 class="text-center ">{{ post.title }}</h1>
-            <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+            <p class="date">Опубліковано: {{ post.publish|date:'d.m.Y' }}. Автор - {{ post.author.first_name }} {{ post.author.last_name }}</p>
             {{ post.body|markdown }}
             <div class="row gy-4 justify-content-center">
                 {% for post_photo in post.photos.all %}
@@ -16,9 +23,12 @@
         </div>
     </div>
 
+
 {% endblock %}
 
-
+{% block include_content %}
+    {% include 'shared/_back_arrow.html' %}
+{% endblock %}
 
 {#    {% with comments.count as total_comments %}#}
 {#        <h2>{{ total_comments }} comment{{ total_comments|pluralize }}</h2>#}
