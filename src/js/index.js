@@ -3,6 +3,7 @@ import {hamburgerToggle} from "./custom/toggle-menu";
 import {CountUp} from 'countup.js/dist/countUp';
 import "bootstrap/dist/js/bootstrap.bundle";
 import "waypoints/lib/noframework.waypoints"
+import "lightgallery.js/src/js/lightgallery"
 
 document.addEventListener("DOMContentLoaded", () => {
     hamburgerToggle();
@@ -14,5 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     counter.start()
 });
+
+lightGallery(document.getElementById('lightgallery'));
 
 import '../sass/main.scss';
