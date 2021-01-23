@@ -49,7 +49,7 @@
                                 <p class="title">{{ post.title|truncatechars:35 }}</p>
                                 <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
                                 <div class="describe-block">
-                                    {{ post.body|markdown|truncatewords_html:45 }}
+                                    {{ post.short_description|truncatewords:45 }}
                                     <p class="text-dark">{{ post.author }}</p>
                                 </div>
                                 <div class="news-tag-container">

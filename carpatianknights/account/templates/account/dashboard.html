@@ -48,7 +48,19 @@
                             {% static "images/avatar-1577909_960_720.webp" %}{% endif %}">
                         <p class="text-center">{{ user.first_name }} {{ user.last_name }}</p>
                         <p>Успішних маршрутів: {{ user_history_tour.count }}</p>
-                        <p>Ранг користувача: {{ user.profile.user_rang }}</p>
+                        <p>Ранг користувача:
+                            {% if user.profile.user_rang > 2 and  user.profile.user_rang < 5 %}
+                                Бувалий
+                            {% elif  user.profile.user_rang >= 5 and  user.profile.user_rang < 8 %}
+                                Душею в горах
+                            {% elif  user.profile.user_rang >= 8  and user.profile.user_rang < 10 %}
+                                Раді вітати на стежках
+                            {% elif  user.profile.user_rang == 10 %}
+                                Сам собі інструктор
+                            {% else %}
+                                Новачок
+                            {% endif %}
+                        </p>
                         <p>На сайті з {{ user.profile.date_of_registration|date:"d.m.Y" }}</p>
                     </div>
                 </div>
