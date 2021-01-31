@@ -1,0 +1,7 @@
+<h1 class="text-center title-background">
+    {% if post %}
+        {{ post.title|truncatewords:10 }}
+    {% else %}
+        {{ route.name|truncatewords:10 }}
+    {% endif %}
+</h1>

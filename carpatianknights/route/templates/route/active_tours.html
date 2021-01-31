@@ -6,9 +6,13 @@
     Актуальні походи
 {% endblock %}
 
+{% block header_content %}
+        <div class="headers-container"><h2>Актуальні походи</h2></div>
+{% endblock %}
+
 {% block content %}
-    <div class="headers-container"><h2>Актуальні походи</h2></div>
-    <div class="active-tours-container">
+{#    <div class="headers-container"><h2>Актуальні походи</h2></div>#}
+    <div class="active-tours-container news-margin">
         <div class="container">
             {% for active_tour in active_tour_list %}
                 <div class="tour-card row">

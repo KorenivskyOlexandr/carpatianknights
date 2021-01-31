@@ -2,8 +2,17 @@
   background-color: rgba(52, 58, 64, 0.6);
   color: white;
   padding-bottom: 50px;
-  h1{
+  min-height: 100vh;
+
+  h1 {
     margin-bottom: 50px;
     padding-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .route-detail-container {
+    margin-top: 100px;
+    padding-top: 30px;
   }
 }

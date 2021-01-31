@@ -6,10 +6,13 @@
     Наші маршрути
 {% endblock %}
 
+{% block header_content %}
+    <div class="headers-container"><h2>Наші маршрути</h2></div>
+{% endblock %}
+
 {% block content %}
 
-    <div class="headers-container"><h2>Наші маршрути</h2></div>
-    <div class="active-tours-container">
+    <div class="active-tours-container news-margin">
         <div class="container">
             {% for route in route_list %}
                 <div class="tour-card row">

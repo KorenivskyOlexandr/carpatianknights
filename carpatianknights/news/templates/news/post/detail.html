@@ -10,7 +10,7 @@
 
     <div class="news-detail-container">
         <div class="container">
-            <h1 class="text-center ">{{ post.title }}</h1>
+            <h1 class="text-center ps-4 title-background-lg">{{ post.title }}</h1>
             <p class="date">Опубліковано: {{ post.publish|date:'d.m.Y' }}. Автор - {{ post.author.first_name }} {{ post.author.last_name }}</p>
             {{ post.body|markdown }}
             <div class="row gy-4 justify-content-center" id="lightgallery">
@@ -28,6 +28,7 @@
 
 {% block include_content %}
     {% include 'shared/_back_arrow.html' %}
+    {% include 'shared/_title-background.html' %}
 {% endblock %}
 
 {#    {% with comments.count as total_comments %}#}

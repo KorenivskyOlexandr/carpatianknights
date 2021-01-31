@@ -1,0 +1,29 @@
+@import "../utilities/colors";
+
+.title-background {
+  display: none;
+}
+
+.title-background-lg {
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .title-background-lg {
+    display: none;
+  }
+  .title-background {
+    display: block;
+    position: fixed;
+    background-color: $main-bg-color;
+    top: 0;
+    z-index: 100;
+    min-height: 100px;
+    height: auto;
+    width: 100vw;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 20px;
+    color: white;
+  }
+}

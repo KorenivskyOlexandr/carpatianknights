@@ -1,13 +1,14 @@
 @import "../utilities/colors";
 
 .headers-container {
-  position: relative;
+  position: fixed;
   width: 100vw;
   height: 10vh;
   background-color: $main-bg-color;
   display: flex;
   justify-content: center;
   align-content: center;
+  z-index: 120;
 
   ::after {
     content: '';
@@ -34,7 +35,12 @@
 
     h2 {
       padding-left: 50px;
+      margin-top: 10px;
     }
   }
 
+}
+
+.headers-container.close {
+  display: none;
 }

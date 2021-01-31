@@ -6,9 +6,13 @@
     Новини
 {% endblock %}
 
+{% block header_content %}
+        <div class="headers-container"><h2>Новини</h2></div>
+{% endblock %}
+
+
 {% block content %}
-    <div class="headers-container"><h2>Новини</h2></div>
-    <div>
+    <div class="news-margin">
         <div class="news-container">
             <div class="container mb-5">
                 {% if tag %}
@@ -49,8 +53,8 @@
                                 <p class="title">{{ post.title|truncatechars:35 }}</p>
                                 <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
                                 <div class="describe-block">
-                                    {{ post.short_description|truncatewords:45 }}
-                                    <p class="text-dark">{{ post.author }}</p>
+                                    {{ post.short_description|truncatewords:50 }}
+                                    <p class="text-dark">{{ post.author.first_name }} {{ post.author.last_name }}</p>
                                 </div>
                                 <div class="news-tag-container">
                                     Tags:
