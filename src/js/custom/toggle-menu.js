@@ -4,6 +4,7 @@ export const hamburgerToggle = () => {
     const sideMenu = document.querySelector('.side-menu');
     const mainBlock = document.querySelector('.main');
     const headers_container = document.querySelector('.headers-container');
+    const title_background = document.querySelector('.title-background');
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('open');
@@ -16,6 +17,10 @@ export const hamburgerToggle = () => {
             : bodyScrollLock.enableBodyScroll(sideMenu))
         try {
             headers_container.classList.toggle('close');
+        } catch (e) {
+        }
+        try {
+            title_background.classList.toggle('close');
         } catch (e) {
         }
 

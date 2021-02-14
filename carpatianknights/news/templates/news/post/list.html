@@ -50,7 +50,7 @@
                     {% for post in posts %}
                         <div class="col-lg-5 col-md-12 col-sm-12 mx-lg-3">
                             <div class="news-card">
-                                <p class="title">{{ post.title|truncatechars:35 }}</p>
+                                <p class="title">{{ post.title|truncatechars:85 }}</p>
                                 <span class="news-date">{{ post.publish|date:"d-m-Y" }}</span>
                                 <div class="describe-block">
                                     {{ post.short_description|truncatewords:50 }}
