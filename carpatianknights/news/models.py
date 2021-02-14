@@ -30,8 +30,8 @@ class Post(models.Model):
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default='draft')
 
-    objects = models.Manager()  # Менеджер по умолчанию.
-    published = PublishedManager()  # Наш новый менеджер.
+    objects = models.Manager()
+    published = PublishedManager()
     tags = TaggableManager()
 
     class Meta:

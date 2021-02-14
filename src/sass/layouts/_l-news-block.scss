@@ -143,6 +143,10 @@
     .news-card {
       height: auto;
 
+      .describe-block{
+        height: auto;
+      }
+
       .news-date {
         position: absolute;
         top: -25px;
