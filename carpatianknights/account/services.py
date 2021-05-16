@@ -51,7 +51,6 @@ def registration_user_to_tour(request):
                 request, 'Заявку подано успішно подано, глава походу зв\'яжеться з вами')
         except IntegrityError:
             messages.error(request, 'Ви вже подавали заявку на цей тур')
-    # return messages
 
 
 def get_dashboard_context(user):
@@ -63,11 +62,12 @@ def get_dashboard_context(user):
 
 
 def get_user_active_tour(user_id):
-    return Tour.objects.all().filter(user_id=user_id, active_route_id__status=True)
+    return Tour.objects.all().filter(user_id=user_id, active_route_id__status=True,
+                                     active_route_id__start_day__gte=date.today())
 
 
 def get_user_history_tour(user_id):
-    return Tour.objects.all().filter(user_id=user_id, active_route_id__status=False)
+    return Tour.objects.all().filter(user_id=user_id, active_route_id__start_day__lt=date.today())
 
 
 def get_active_tour(active_tour_id):
